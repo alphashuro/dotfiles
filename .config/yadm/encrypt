@@ -1,2 +1,3 @@
 Developer/bluerobot/shell.nix
 Developer/stitch-money/shell.nix
+.config/aerc/accounts.conf

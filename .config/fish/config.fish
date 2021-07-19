@@ -16,6 +16,7 @@ if status is-interactive
   end
 
   set -x FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
+  set -x XDG_CONFIG_HOME $HOME/.config
   set -x GPG_TTY (tty)
 end
 
