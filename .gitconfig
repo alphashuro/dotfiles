@@ -1,0 +1,13 @@
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[user]
+	name = alpha
+	email = alphashuro@gmail.com
+	signingkey = 0D93AEB44BD8E932
+[commit]
+	gpgsign = true
+[push]
+	default = current
