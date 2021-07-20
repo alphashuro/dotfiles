@@ -68,6 +68,8 @@ brew "kak-lsp/kak-lsp/kak-lsp"
 brew "qmk/qmk/qmk"
 # dotfile manager
 brew "yadm"
+brew "gpg"
+brew "1password-cli"
 
 cask "1password"
 cask "alacritty"
