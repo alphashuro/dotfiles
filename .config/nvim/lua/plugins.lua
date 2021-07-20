@@ -89,6 +89,9 @@ require('packer').startup(function()
 
   -- move across each word in camel/snake case
   use 'bkad/CamelCaseMotion'
+  
+  -- distraction free writing
+  use 'junegunn/goyo.vim'
 end)
 
 require('configs/lspconfig')
