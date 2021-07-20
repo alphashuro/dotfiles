@@ -1,19 +1,15 @@
 font:
   normal:
-    family: SauceCodePro Nerd Font Mono 
-    style: Light
+    family: MesloLGS Nerd Font Mono
 
   bold:
-    family: SauceCodePro Nerd Font Mono 
-    style: Bold
+    family: MesloLGS Nerd Font Mono
 
   italic:
-    family: SauceCodePro Nerd Font Mono 
-    style: Light Italic
+    family: MesloLGS Nerd Font Mono
 
   bold_italic:
-    family: SauceCodePro Nerd Font Mono 
-    style: Bold Italic
+    family: MesloLGS Nerd Font Mono
 
   size: 12
 # Colors (Gruvbox dark)
