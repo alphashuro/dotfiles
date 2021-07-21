@@ -1,12 +1,12 @@
 if status is-interactive
+  set -x app_dir (brew --prefix)
+
   # autojump init
-  [ -f /usr/local/share/autojump/autojump.fish ]; and source /usr/local/share/autojump/autojump.fish
+  [ -f $app_dir/share/autojump/autojump.fish ]; and source $app_dir/share/autojump/autojump.fish
   #asdf init
-  [ -f /usr/local/opt/asdf/asdf.fish ]; and source /usr/local/opt/asdf/asdf.fish
+  [ -f $app_dir/opt/asdf/asdf.fish ]; and source $app_dir/opt/asdf/asdf.fish
   #nix init
-  if test -e '/Users/alpha/.nix-profile/etc/profile.d/nix.sh'
-    fenv source '/Users/alpha/.nix-profile/etc/profile.d/nix.sh'
-  end
+  [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; and fenv source "$HOME/.nix-profile/etc/profile.d/nix.sh"
   # thefuck init
   thefuck --alias | source
   # direnv init (with asdf)
