@@ -59,3 +59,6 @@
 (setq projectile-project-search-path '("~/Developer"))
 
 (setq browse-url-browser-function 'eww-browse-url)
+
+(setq org-agenda-files
+    (file-expand-wildcards "~/org/*.org"))
