@@ -71,7 +71,6 @@ brew "gpg"
 
 cask "1password-cli"
 cask "1password"
-cask "alacritty"
 cask "alfred"
 cask "cloudflare-warp"
 cask "deluge"
