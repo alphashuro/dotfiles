@@ -1,3 +1,4 @@
+
 tap "cloudflare/cloudflare"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -68,6 +69,10 @@ brew "qmk/qmk/qmk"
 # dotfile manager
 brew "yadm"
 brew "gpg"
+
+# email client
+brew "notmuch"
+brew "mutt"
 
 cask "1password-cli"
 cask "1password"
