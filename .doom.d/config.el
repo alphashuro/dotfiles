@@ -61,4 +61,20 @@
 (setq browse-url-browser-function 'eww-browse-url)
 
 (setq org-agenda-files
-    (file-expand-wildcards "~/Dropbox/org/**/*.org"))
+    '("~/Dropbox/org"))
+
+;; Language extension for Gleam, a promising young language
+(load-file "~/.emacs.d/.local/straight/repos/gleam-mode/gleam-mode.el")
+(require 'gleam-mode)
+(add-to-list 'auto-mode-alist '("\\.gleam$" . gleam-mode))
+
+;; An attempt to make org-refile work across files to transfer top level haeadings
+(setq org-outline-path-complete-in-steps t)
+(setq org-refile-use-outline-path 'file)
+(setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+
+;; Track habit completion with a graph
+(require 'org-habit)
+(setq org-habit-graph-column 80)
+(setq org-habit-following-days 0)
+(setq org-habit-preceding-days 30)

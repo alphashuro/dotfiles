@@ -41,10 +41,14 @@
 ;(package! builtin-package :pin "1a2b3c4d5e")
 
 
-;; Doom's packages are pinned to a specific commit and updated from release to
-;; release. The `unpin!' macro allows you to unpin single packages...
+;; doom's packages are pinned to a specific commit and updated from release to
+;; release. the `unpin!' macro allows you to unpin single packages...
 ;(unpin! pinned-package)
 ;; ...or multiple packages
 ;(unpin! pinned-package another-pinned-package)
-;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
+;; ...or *all* packages (not recommended; will likely break things)
 ;(unpin! t)
+
+(package! gleam-mode
+  :recipe (:host nil
+           :repo "git@github.com:gleam-lang/gleam-mode.git"))

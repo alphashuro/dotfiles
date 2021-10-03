@@ -92,6 +92,9 @@ require('packer').startup(function()
   
   -- distraction free writing
   use 'junegunn/goyo.vim'
+
+  -- gleam syntax
+  use 'gleam-lang/gleam.vim'
 end)
 
 require('configs/lspconfig')
