@@ -31,3 +31,6 @@ if status is-interactive
   set -x GPG_TTY (tty)
 end
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/alphashuro/Developer/tools/google-cloud-sdk/path.fish.inc' ]; . '/Users/alphashuro/Developer/tools/google-cloud-sdk/path.fish.inc'; end

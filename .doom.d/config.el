@@ -78,3 +78,5 @@
 (setq org-habit-graph-column 80)
 (setq org-habit-following-days 0)
 (setq org-habit-preceding-days 30)
+
+(setq deft-directory "~/Dropbox/org")

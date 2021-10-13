@@ -73,6 +73,7 @@ brew "gpg"
 # email client
 brew "notmuch"
 brew "mutt"
+brew "offlineimap"
 
 cask "1password-cli"
 cask "1password"

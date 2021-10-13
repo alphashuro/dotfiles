@@ -52,3 +52,5 @@
 (package! gleam-mode
   :recipe (:host nil
            :repo "git@github.com:gleam-lang/gleam-mode.git"))
+
+(package! rescript-mode)
