@@ -7,7 +7,7 @@ localrepository = LocalGmail
 remoterepository = RemoteGmail
 autorefresh = 5
 quick = 10
-postsynchook = mu index --maildir ~/Maildir
+postsynchook = mu index
 # status_backend = sqlite
 
 [Repository LocalGmail]

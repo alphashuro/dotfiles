@@ -10,6 +10,7 @@
 # Notmuch will store its database within a sub-directory of the path
 # configured here named ".notmuch".
 #
+
 [database]
 
 # User configuration
@@ -27,10 +28,10 @@
 # recipient list of replies, and will set the From address based on the
 # address to which the original email was addressed.
 #
+
 [user]
 name=Alpha Shuro
 primary_email=alphashuro@gmail.com
-other_email=alphashuro@fastmail.com;
 
 # Configuration for "notmuch new"
 #
@@ -46,6 +47,7 @@ other_email=alphashuro@fastmail.com;
 #		names will be ignored, independent of its depth/location
 #		in the mail store.
 #
+
 [new]
 
 # Search configuration
@@ -57,6 +59,7 @@ other_email=alphashuro@fastmail.com;
 #		search results by default.  Using an excluded tag in a
 #		query will override that exclusion.
 #
+
 [search]
 
 # Maildir compatibility configuration
@@ -80,4 +83,5 @@ other_email=alphashuro@fastmail.com;
 #	and update tags, while the "notmuch tag" and "notmuch restore"
 #	commands will notice tag changes and update flags in filenames
 #
+
 [maildir]

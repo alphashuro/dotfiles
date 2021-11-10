@@ -80,3 +80,8 @@
 (setq org-habit-preceding-days 30)
 
 (setq deft-directory "~/Dropbox/org")
+
+(setq persp-auto-save-fname "autosave")
+
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+(setq nov-text-width 80)

@@ -15,7 +15,7 @@ if status is-interactive
   set init_files \
     "$brew_dir/share/autojump/autojump.fish" \
     "$brew_dir/opt/asdf/asdf.fish" \
-    "$HOME/.nix-profile/etc/profile.d/nix.sh"
+    # "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
   for file in $init_files
     if test -f $file
@@ -34,3 +34,6 @@ end
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/alphashuro/Developer/tools/google-cloud-sdk/path.fish.inc' ]; . '/Users/alphashuro/Developer/tools/google-cloud-sdk/path.fish.inc'; end
+
+# disable greeting line
+set fish_greeting

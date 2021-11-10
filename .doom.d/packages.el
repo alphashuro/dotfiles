@@ -54,3 +54,5 @@
            :repo "git@github.com:gleam-lang/gleam-mode.git"))
 
 (package! rescript-mode)
+
+(package! nov)
