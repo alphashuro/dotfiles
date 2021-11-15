@@ -37,3 +37,4 @@ if [ -f '/Users/alphashuro/Developer/tools/google-cloud-sdk/path.fish.inc' ]; . 
 
 # disable greeting line
 set fish_greeting
+fish_add_path /usr/local/sbin
