@@ -1,5 +1,4 @@
-Developer/bluerobot/shell.nix
-Developer/stitch-money/shell.nix
+Developer/bluerobot/.envrc
 .config/aerc/accounts.conf
 .mutt/muttrc
 .passwd/*

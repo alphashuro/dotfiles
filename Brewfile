@@ -69,6 +69,7 @@ brew "qmk/qmk/qmk"
 # dotfile manager
 brew "yadm"
 brew "gpg"
+brew "dasht"
 
 # email client
 brew "notmuch"
