@@ -79,7 +79,7 @@
 (setq org-habit-following-days 0)
 (setq org-habit-preceding-days 30)
 
-(setq deft-directory "~/Dropbox/org")
+(setq deft-directory "~/Dropbox/org/notes")
 
 (setq persp-auto-save-fname "autosave")
 

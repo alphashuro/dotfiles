@@ -10,8 +10,6 @@ tap "osx-cross/arm"
 tap "osx-cross/avr"
 tap "qmk/qmk"
 
-# commandline mail app
-brew "aerc"
 brew "calcurse"
 brew "coreutils"
 # manage all tool versions
@@ -19,17 +17,15 @@ brew "asdf"
 brew "python@3"
 brew "glib"
 brew "tcl-tk"
-# j to fuzzy jump to any folder you've visited before
-brew "autojump"
+brew "autojump" # j to fuzzy jump to any folder you've visited before
 brew "python@3.9"
-# better cat
-brew "bat"
+brew "bat" # better cat
 brew "cairo"
 brew "cask"
 brew "cmake"
 brew "ctags"
-# offline docs viewing
-brew "dash"
+brew "dash" # offline docs viewing
+brew "dasht" # dash on terminal
 brew "direnv"
 brew "fd"
 brew "fish"
@@ -38,43 +34,32 @@ brew "gawk"
 brew "gh"
 brew "git"
 brew "gnupg"
-brew "gobject-introspection"
-brew "helix-editor/helix/helix"
 brew "htop"
-brew "kakoune"
 brew "krb5"
 brew "libfixposix"
 brew "lsd"
 brew "luarocks"
-brew "lynx"
 brew "neovim"
 brew "node"
-brew "ranger"
-brew "rcm"
+brew "ranger" # terminal based file manager
 brew "ripgrep"
-brew "subversion"
 brew "the_silver_searcher"
-brew "thefuck"
-# man for the simplefolk
-brew "tldr"
+brew "tldr" # man for the simplefolk
 brew "tmux"
-brew "v8"
 brew "vim"
-brew "w3m"
-brew "wget"
-brew "zellij"
-brew "cloudflare/cloudflare/cloudflared"
-brew "kak-lsp/kak-lsp/kak-lsp"
-brew "qmk/qmk/qmk"
-# dotfile manager
-brew "yadm"
-brew "gpg"
-brew "dasht"
 
 # email client
 brew "notmuch"
 brew "mutt"
 brew "offlineimap"
+
+brew "w3m" # browse the web from the terminal
+brew "wget" # fetch files from the web
+brew "qmk/qmk/qmk" # kbd customization
+brew "yadm" # dotfile manager
+brew "gpg" # encryption
+brew "offlineimap" # email client
+brew "mu" # mail indexer
 
 cask "1password-cli"
 cask "1password"
@@ -86,15 +71,13 @@ cask "dropbox"
 cask "firefox-developer-edition"
 cask "font-sauce-code-pro-nerd-font"
 cask "font-meslo-lg-nerd-font"
-cask "insomnia"
-cask "lens"
-cask "monodraw"
-cask "ngrok"
+cask "insomnia" # http requests
+cask "lens" # kubernetes ui
+cask "monodraw" # ascii diagrams
 cask "notion"
 cask "plex"
 cask "postico"
-cask "postman"
-cask "qmk-toolbox"
+cask "qmk-toolbox" # ui for qmk
 cask "sequel-pro-nightly"
 cask "signal"
 cask "slack"
@@ -104,7 +87,7 @@ cask "sublime-text"
 cask "telegram"
 cask "visual-studio-code-insiders"
 cask "whatsapp"
-cask "xquartz"
+cask "xquartz" # x-window system on macos
 cask "protonvpn"
-cask "brave-browser"
-cask "kitty"
+cask "kitty" # terminal app
+cask "spotify" # music player
