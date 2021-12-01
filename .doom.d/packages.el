@@ -56,3 +56,5 @@
 (package! rescript-mode)
 
 (package! nov)
+
+(package! ob-mermaid)

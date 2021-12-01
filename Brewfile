@@ -61,6 +61,11 @@ brew "gpg" # encryption
 brew "offlineimap" # email client
 brew "mu" # mail indexer
 
+brew "elixir"
+brew "screenplaydev/tap/graphite"
+
+brew "quill"
+
 cask "1password-cli"
 cask "1password"
 cask "alfred"
@@ -91,3 +96,8 @@ cask "xquartz" # x-window system on macos
 cask "protonvpn"
 cask "kitty" # terminal app
 cask "spotify" # music player
+cask "spark"
+cask "vagrant"
+cask "vagrant-vmware-utility"
+cask "vmware-fusion"
+cask "virtualbox"

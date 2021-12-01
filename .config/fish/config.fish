@@ -38,3 +38,6 @@ if [ -f '/Users/alphashuro/Developer/tools/google-cloud-sdk/path.fish.inc' ]; . 
 # disable greeting line
 set fish_greeting
 fish_add_path /usr/local/sbin
+
+# use vmware as default platform for vagrant
+set VAGRANT_DEFAULT_PROVIDER vmware_fusion
