@@ -41,3 +41,4 @@ fish_add_path /usr/local/sbin
 
 # use vmware as default platform for vagrant
 set VAGRANT_DEFAULT_PROVIDER vmware_fusion
+set HOMEBREW_NO_AUTO_UPDATE 1

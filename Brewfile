@@ -47,6 +47,7 @@ brew "the_silver_searcher"
 brew "tldr" # man for the simplefolk
 brew "tmux"
 brew "vim"
+brew "pnpm"
 
 # email client
 brew "notmuch"
@@ -63,8 +64,6 @@ brew "mu" # mail indexer
 
 brew "elixir"
 brew "screenplaydev/tap/graphite"
-
-brew "quill"
 
 cask "1password-cli"
 cask "1password"
