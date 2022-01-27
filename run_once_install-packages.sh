@@ -9,6 +9,8 @@ fi
 # install brew packages
 brew bundle install --file=~/Brewfile
 
+brew services start goku
+
 # install doom emacs
 # ensure emacs exists before trying to install doom
 if ! command -v emacs /DEV/null
