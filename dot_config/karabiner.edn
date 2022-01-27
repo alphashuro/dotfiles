@@ -1,0 +1,25 @@
+{:simlayers {
+ :window-mode {:key :w}
+ :open-mode {:key :o}
+ :space-mode {:key :spacebar}}
+ :templates {:launch "open -g hammerspoon://open%s"}
+ :main [
+        {:des   "Caps Lock: tap for Escape, hold for Control."
+         :rules [[:##caps_lock :left_control nil {:alone :escape}]]}
+        {:des   "Space mode: arrows, return, etc."
+         :rules [:space-mode
+                 [:##h :left_arrow :space-mode]
+                 [:##j :down_arrow :space-mode]
+                 [:##k :up_arrow :space-mode]
+                 [:##l :right_arrow :space-mode]
+                 [:##m :return_or_enter :space-mode]
+                 ]}
+        {:des   "Window mode: switch to common applications"
+         :rules [:window-mode
+                 [:##t [:launch "Kitty"] :window-mode]
+                 [:##f [:launch "Firefox"] :window-mode]
+                 [:##s [:launch "Slack"] :window-mode]
+                 [:##m [:launch "Spotify"] :window-mode]
+                 ]}
+       ]
+}
