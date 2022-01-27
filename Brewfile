@@ -1,13 +1,3 @@
-### Mac App Store apps
-
-# safari extensions
-mas "Flow"
-mas "Vimari"
-mas "uBlacklist for Safari"
-mas "Hush"
-
-### brew formulae and casks
-
 tap "cloudflare/cloudflare"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -18,6 +8,17 @@ tap "homebrew/core"
 tap "osx-cross/arm"
 tap "osx-cross/avr"
 tap "qmk/qmk"
+
+brew "mas"
+
+### Mac App Store apps
+# safari extensions
+# mas "Flow"
+# mas "Vimari"
+# mas "uBlacklist for Safari"
+# mas "Hush"
+
+### brew formulae and casks
 
 brew "coreutils"
 
@@ -88,7 +89,8 @@ cask "dropbox" # files on the cloud boiiii
 cask "monodraw" # ascii diagrams
 cask "plex" # media server. Netflix who?
 cask "qmk-toolbox" # ui for qmk
-
+cask "karabiner-elements" # keyboard hacks
+brew "yqrashawn/goku/goku"
 
 ### should probably use nix for these
 
