@@ -1,0 +1,10 @@
+include colemak-dh
+
+[global]
+default_layout = colemak-dh
+
+[main]
+p = S-p
+
+[shift]
+p = p
