@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+sudo ln -s ~/.config/keyd /etc/keyd
+
+{{ end -}}

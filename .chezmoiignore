@@ -1,0 +1,6 @@
+{{- if ne .chezmoi.os "linux" }}
+
+.config/keyd
+run_once_after_install-link-keyd-mappings.sh
+
+{{- end }}

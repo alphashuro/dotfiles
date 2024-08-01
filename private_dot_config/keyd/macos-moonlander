@@ -26,9 +26,17 @@ c = C-insert
 b = S-insert
 x = S-delete
 
-# various utils
+## various utils
+# new tab
 f = C-t
+# close tab
 w = C-w
+# select all
 a = C-a
+# select url (in browser)
 u = C-l
+# find
+e = C-f
+# find-next
+g = C-g
 
