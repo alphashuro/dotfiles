@@ -1,0 +1,49 @@
+tap "homebrew/bundle"
+
+# essentials
+brew "coreutils"
+brew "wget"
+brew "neovim"
+brew "autojump" # j to fuzzy jump to any folder you've visited before
+brew "bat" # better cat
+brew "htop"
+brew "ripgrep"
+brew "fish"
+brew "fzf"
+brew "fd"
+brew "zellij"
+brew "broot"
+brew "yazi"
+brew "luarocks" # neovim dependency?
+brew "the_silver_searcher"
+
+# dev
+brew "git"
+brew "direnv"
+
+{{- if eq .chezmoi.os "darwin"}}
+# ******** casks
+tap "homebrew/cask"
+
+# essentials
+cask "1password-cli"
+cask "1password"
+cask "dropbox"
+cask "kitty"
+
+# gaming
+cask "discord"
+cask "steam"
+
+# dev
+cask "sublime-text"
+cask "sublime-merge"
+cask "visual-studio-code"
+
+# comms and chats apps
+cask "telegram"
+cask "slack"
+cask "signal"
+cask "whatsapp"
+
+{{- end }}
