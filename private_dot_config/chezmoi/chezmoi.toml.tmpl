@@ -1,0 +1,6 @@
+{{- if ne .chezmoi.os "linux" }}
+
+[scriptEnv]
+  SUDO_ASKPASS = "/usr/bin/ssh-askpass"
+
+{{- end }}

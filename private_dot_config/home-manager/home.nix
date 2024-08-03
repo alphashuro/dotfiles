@@ -18,8 +18,8 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    pkgs.kitty
-    pkgs.neovim
+    # pkgs.kitty
+    # pkgs.neovim
     pkgs.tailscale
     # pkgs._1password
     # pkgs._1password-gui
@@ -75,4 +75,7 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  # programs.kitty.enable = true;
+
+  # services.tailscale.enable = true;
 }

@@ -5,7 +5,7 @@ curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install 
 
 fish -c 'omf install'
 
-sudo ln -si $(which fish) /usr/local/bin/fish
+sudo -A ln -si $(which fish) /usr/local/bin/fish
 
 if ! grep -q fish "/etc/shells"; then
   echo /usr/local/bin/fish | sudo tee -a /etc/shells
