@@ -4,4 +4,5 @@ if status is-interactive
 end
 
 fenv source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 

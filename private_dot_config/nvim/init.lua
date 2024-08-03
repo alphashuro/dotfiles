@@ -236,6 +236,23 @@ now(function()
   })
 
   vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+  add({
+    source = 'xvzc/chezmoi.nvim',
+    depends = {
+      'nvim-lua/plenary.nvim',
+    }
+  })
+
+  require("chezmoi").setup({})
+
+  -- automatically apply changes on files under chezmoi source path
+  vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { os.getenv("HOME") .. "/.local/share/chezmoi/*" },
+    callback = function()
+      vim.schedule(require("chezmoi.commands.__edit").watch)
+    end,
+  })
 end)
 
 -- lsp
