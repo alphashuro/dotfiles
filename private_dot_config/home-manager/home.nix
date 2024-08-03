@@ -20,6 +20,7 @@
   home.packages = [
     pkgs.kitty
     pkgs.neovim
+    pkgs.tailscale
     # pkgs._1password
     # pkgs._1password-gui
 
