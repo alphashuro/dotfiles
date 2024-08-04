@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # type ssh-askpass >/dev/null 2>&1 && exit
 

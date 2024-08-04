@@ -186,8 +186,6 @@ now(function()
   vim.keymap.set('n', '<Leader>tu', ':MundoToggle<CR>', { desc = 'Toggle undo tree' })
 
   add({
-    source = 'NeogitOrg/neogit',
-    depends = {
       'nvim-lua/plenary.nvim',
       'sindrets/diffview.nvim',
       'nvim-tree/nvim-web-devicons',
@@ -247,12 +245,12 @@ now(function()
   require("chezmoi").setup({})
 
   -- automatically apply changes on files under chezmoi source path
-  vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { os.getenv("HOME") .. "/.local/share/chezmoi/*" },
-    callback = function()
-      vim.schedule(require("chezmoi.commands.__edit").watch)
-    end,
-  })
+  -- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  --   pattern = { os.getenv("HOME") .. "/.local/share/chezmoi/*" },
+  --   callback = function()
+  --     vim.schedule(require("chezmoi.commands.__edit").watch)
+  --   end,
+  -- })
 end)
 
 -- lsp

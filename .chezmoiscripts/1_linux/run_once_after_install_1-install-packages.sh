@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 sudo -A sh -c '\
   tailscale up; \

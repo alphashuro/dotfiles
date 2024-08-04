@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 type home-manager >/dev/null 2>&1 && exit
 
