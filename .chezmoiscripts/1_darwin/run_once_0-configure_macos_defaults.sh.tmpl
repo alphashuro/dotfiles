@@ -1,13 +1,13 @@
-#!/bin/zsh
+#!{{ lookPath "fish" }}
 
-# dock 
+# dock
 ##  autohide
 ### enable
 defaults write com.apple.dock "autohide" -bool "true"
 ### remove delay
 defaults write com.apple.dock "autohide-delay" -float "0"
 ### remove animation
-defaults write com.apple.dock "autohide-time-modifier" -float "0" 
+defaults write com.apple.dock "autohide-time-modifier" -float "0"
 ## recents
 ### disable
 defaults write com.apple.dock "show-recents" -bool "false"

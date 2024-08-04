@@ -1,5 +1,4 @@
-#!/bin/fish
+#!{{ lookPath "fish" }}
 
 # nix darwin config hash: {{ include "private_dot_config/nix-darwin/flake.nix.tmpl" | sha256sum }}
-
 darwin-rebuild switch --flake ~/.config/nix-darwin

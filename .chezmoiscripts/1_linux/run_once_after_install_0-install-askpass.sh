@@ -1,5 +1,5 @@
 #!/bin/bash
 
-type ssh-askpass >/dev/null 2>&1 && exit
+# type ssh-askpass >/dev/null 2>&1 && exit
 
-sudo apt-get install ssh-askpass
+# sudo apt-get install ssh-askpass
