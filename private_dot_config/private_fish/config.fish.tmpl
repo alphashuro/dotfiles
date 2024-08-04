@@ -4,6 +4,9 @@ if type -q fenv
   fenv source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 end
 
+# seems necessary on macos for now
+fish_add_path /run/current-system/sw/bin
+
 if status is-interactive
     set -U fish_greeting
     set -x EDITOR nvim
@@ -14,4 +17,3 @@ if status is-interactive
 
     alias k=kubectl
 end
-

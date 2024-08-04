@@ -1,4 +1,3 @@
-
 ---------- install mini.nvim
 local path_package = vim.fn.stdpath("data") .. "/site/"
 local mini_path = path_package .. "pack/deps/start/mini.nvim"
@@ -24,7 +23,6 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 now(function()
   vim.o.termguicolors = true
   vim.cmd("colorscheme minischeme")
-
 end)
 
 now(function()
@@ -62,7 +60,7 @@ now(function()
       { mode = 'x', keys = '`' },
 
       -- Registers
-      {mode = 'n', keys = '"'},
+      { mode = 'n', keys = '"' },
       { mode = 'x', keys = '"' },
       { mode = 'i', keys = '<C-r>' },
       { mode = 'c', keys = '<C-r>' },
@@ -83,12 +81,12 @@ now(function()
       MiniClue.gen_clues.registers(),
       MiniClue.gen_clues.windows(),
       MiniClue.gen_clues.z(),
-      { mode = 'n', keys = '<Leader>c', desc = "Code" },
-      { mode = 'n', keys = '<Leader>f', desc = "Files" },
-      { mode = 'n', keys = '<Leader><Tab>', desc = 'Tabs'},
-      { mode = 'n', keys = '<Leader>d', desc = 'Debug'},
-      { mode = 'n', keys = '<Leader>g', desc = 'Git'},
-      { mode = 'n', keys = '<Leader>t', desc = 'Toggle'}
+      { mode = 'n', keys = '<Leader>c',     desc = "Code" },
+      { mode = 'n', keys = '<Leader>f',     desc = "Files" },
+      { mode = 'n', keys = '<Leader><Tab>', desc = 'Tabs' },
+      { mode = 'n', keys = '<Leader>d',     desc = 'Debug' },
+      { mode = 'n', keys = '<Leader>g',     desc = 'Git' },
+      { mode = 'n', keys = '<Leader>t',     desc = 'Toggle' }
     },
 
     window = {
@@ -171,7 +169,7 @@ now(function()
     },
     modules = {},
     sync_install = false,
-    ignore_install = {"org"}
+    ignore_install = { "org" }
   })
 
   add({
@@ -186,6 +184,8 @@ now(function()
   vim.keymap.set('n', '<Leader>tu', ':MundoToggle<CR>', { desc = 'Toggle undo tree' })
 
   add({
+    source = 'NeogitOrg/neogit',
+    depends = {
       'nvim-lua/plenary.nvim',
       'sindrets/diffview.nvim',
       'nvim-tree/nvim-web-devicons',
@@ -272,7 +272,7 @@ later(function()
       settings = {
         Lua = {
           diagnostics = {
-            globals = {'vim'}
+            globals = { 'vim' }
           },
           completion = {
             callSnippet = 'Replace',
@@ -326,13 +326,12 @@ later(function()
       mapl('cR', lspope('references'), 'References')
       mapl('ct', lspope('type_definition'), 'Type definition')
       mapl('cS', lspope('workspace_symbol'), 'Workspace symbol')
-    vim.api.nvim_create_autocmd('LspDetach', {
-      group = vim.api.nvim_create_augroup('lsp-mappings-detach', { clear = true }),
-      callback = function()
-        vim.lsp.buf.clear_references()
-      end,
-    })
-
+      vim.api.nvim_create_autocmd('LspDetach', {
+        group = vim.api.nvim_create_augroup('lsp-mappings-detach', { clear = true }),
+        callback = function()
+          vim.lsp.buf.clear_references()
+        end,
+      })
     end
   })
 
@@ -346,53 +345,53 @@ end)
 
 -- debug adapter
 later(
-function()
-  add({
-    source = 'mfussenegger/nvim-dap',
-    depends = {
-      -- Creates a beautiful debugger UI
-      'rcarriga/nvim-dap-ui',
+  function()
+    add({
+      source = 'mfussenegger/nvim-dap',
+      depends = {
+        -- Creates a beautiful debugger UI
+        'rcarriga/nvim-dap-ui',
 
-      -- Required dependency for nvim-dap-ui
-      'nvim-neotest/nvim-nio',
+        -- Required dependency for nvim-dap-ui
+        'nvim-neotest/nvim-nio',
 
-      -- Installs the debug adapters for you
-      'williamboman/mason.nvim',
-      'jay-babu/mason-nvim-dap.nvim',
+        -- Installs the debug adapters for you
+        'williamboman/mason.nvim',
+        'jay-babu/mason-nvim-dap.nvim',
 
-      -- Add your own debuggers here
-      'leoluz/nvim-dap-go',
-    },
-    hooks = {}
-  })
+        -- Add your own debuggers here
+        'leoluz/nvim-dap-go',
+      },
+      hooks = {}
+    })
 
-  local dap = require 'dap'
-  local dapui = require 'dapui'
+    local dap = require 'dap'
+    local dapui = require 'dapui'
 
-  require('mason-nvim-dap').setup {
-    automatic_installation = true,
-    ensure_installed = {
-      'node2',
-    },
-  }
+    require('mason-nvim-dap').setup {
+      automatic_installation = true,
+      ensure_installed = {
+        'node2',
+      },
+    }
 
-  vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'Debug: Start/Continue' })
-  vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Debug: Step Into' })
-  vim.keymap.set('n', '<leader>dn', dap.step_over, { desc = 'Debug: Step Over' })
-  vim.keymap.set('n', '<leader>do', dap.step_out, { desc = 'Debug: Step Out' })
-  vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
-  vim.keymap.set(
-  'n',
-  '<leader>dB',
-  function() dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ') end,
-  { desc = 'Debug: Set Breakpoint' }
-  )
-  vim.keymap.set('n', '<leader>dl', dapui.toggle, { desc = 'Debug: See last session result.' })
+    vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'Debug: Start/Continue' })
+    vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Debug: Step Into' })
+    vim.keymap.set('n', '<leader>dn', dap.step_over, { desc = 'Debug: Step Over' })
+    vim.keymap.set('n', '<leader>do', dap.step_out, { desc = 'Debug: Step Out' })
+    vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+    vim.keymap.set(
+      'n',
+      '<leader>dB',
+      function() dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ') end,
+      { desc = 'Debug: Set Breakpoint' }
+    )
+    vim.keymap.set('n', '<leader>dl', dapui.toggle, { desc = 'Debug: See last session result.' })
 
-  dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-  dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-  dap.listeners.before.event_exited['dapui_config'] = dapui.close
-end)
+    dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+    dap.listeners.before.event_exited['dapui_config'] = dapui.close
+  end)
 
 local nmap_leader = function(suffix, rhs, desc)
   vim.keymap.set('n', '<Leader>' .. suffix, rhs, { desc = desc })
@@ -412,10 +411,10 @@ nmap_leader('<Tab>]', '<CMD>tabnext<CR>', 'Next tab')
 nmap_leader('<Tab>[', '<CMD>tabprevious<CR>', 'Previous tab')
 
 -- code mappings
-nmap_leader('cf', vim.lsp.buf.format,     'Format')
-nmap_leader('cr', vim.lsp.buf.rename,     'Rename')
+nmap_leader('cf', vim.lsp.buf.format, 'Format')
+nmap_leader('cr', vim.lsp.buf.rename, 'Rename')
 nmap_leader('cR', vim.lsp.buf.references, 'References')
-nmap_leader('cci', vim.lsp.buf.incoming_calls,     'Incoming calls')
+nmap_leader('cci', vim.lsp.buf.incoming_calls, 'Incoming calls')
 nmap_leader('cco', vim.lsp.buf.outgoing_calls, 'Outgoing calls')
 vim.keymap.set('n', 'ch', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
 nmap_leader('cX', MiniExtra.pickers.diagnostic, 'Diagnostics')
@@ -438,9 +437,12 @@ nmap_leader('tm', MiniMap.toggle, 'Toggle minimap')
 nmap_leader('tr', '<CMD>source $MYVIMRC<CR>', 'Reload config')
 nmap_leader('tw', '<CMD>setlocal wrap! wrap?<CR>', 'Toggle word wrap')
 nmap_leader('ts', '<CMD>setlocal spell! spell?<CR>', 'Toggle spell')
-nmap_leader('tb', '<Cmd>lua vim.o.bg = vim.o.bg == "dark" and "light" or "dark"; print(vim.o.bg)<CR>', 'Toggle background')
+nmap_leader('tb', '<Cmd>lua vim.o.bg = vim.o.bg == "dark" and "light" or "dark"; print(vim.o.bg)<CR>',
+  'Toggle background')
 nmap_leader('tl', '<CMD>setlocal list! list?<CR>', 'Toggle list')
-nmap_leader('th', '<Cmd>let v:hlsearch = 1 - v:hlsearch | echo (v:hlsearch ? "  " : "no") . "hlsearch" | :lua MiniMap.refresh()<CR>', 'Toggle search highlight')
+nmap_leader('th',
+  '<Cmd>let v:hlsearch = 1 - v:hlsearch | echo (v:hlsearch ? "  " : "no") . "hlsearch" | :lua MiniMap.refresh()<CR>',
+  'Toggle search highlight')
 nmap_leader('td', '<Cmd>lua print(MiniBasics.toggle_diagnostic())<CR>', 'Toggle diagnostic')
 
 -- other leader mappings
@@ -454,9 +456,9 @@ vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
 -- neovide settings
 if vim.g.neovide then
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
-  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
-  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
-  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+  vim.keymap.set('v', '<D-c>', '"+y')    -- Copy
+  vim.keymap.set('n', '<D-v>', '"+P')    -- Paste normal mode
+  vim.keymap.set('v', '<D-v>', '"+P')    -- Paste visual mode
   vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
   vim.keymap.set('i', '<D-v>', '<C-R>+') -- Paste insert mode
 
