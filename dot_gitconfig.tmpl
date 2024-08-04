@@ -6,12 +6,8 @@
 [gpg]
   format = "ssh"
 
-{{- if eq .chezmoi.os "darwin" }}
-
 [gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-
-{{- end }}
+  program = "{{ lookPath "op-ssh-sign" }}"
 
 [commit]
   gpgsign = true
