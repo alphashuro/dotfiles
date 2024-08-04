@@ -2,4 +2,4 @@
 
 type brew >/dev/null 2>&1 && exit
 
-NONINTERACTIVE=1 {{ lookPath "bash" }} -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+{{ lookPath "bash" }} -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
