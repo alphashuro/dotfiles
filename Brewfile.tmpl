@@ -1,14 +1,17 @@
 tap "homebrew/bundle"
 
 # essentials
+brew "chezmoi"
 brew "coreutils"
 brew "wget"
 brew "neovim"
-brew "autojump" # j to fuzzy jump to any folder you've visited before
+brew "zoxide"
 brew "bat" # better cat
 brew "htop"
 brew "ripgrep"
 brew "fish"
+brew "fisher"
+brew "starship"
 brew "fzf"
 brew "fd"
 brew "zellij"
@@ -19,26 +22,42 @@ brew "the_silver_searcher"
 
 # dev
 brew "git"
+brew "lazygit"
 brew "direnv"
+brew "helix"
 
 {{- if eq .chezmoi.os "darwin"}}
+brew "mas"
+
 # ******** casks
-tap "homebrew/cask"
+brew "yqrashawn/goku/goku"
 
 # essentials
 cask "1password-cli"
 cask "1password"
+mas "1Password for Safari", id: 1333542190
 cask "dropbox"
 cask "kitty"
+cask "raindropio"
+cask "tailscale"
+cask "brave-browser"
+cask "monitorcontrol"
+cask "devutils"
+
+cask "karabiner-elements"
 
 # gaming
 cask "discord"
 cask "steam"
+cask "battle-net"
 
 # dev
 cask "sublime-text"
 cask "sublime-merge"
 cask "visual-studio-code"
+tap "railwaycat/emacsmacport"
+cask "railwaycat/emacsmacport/emacs-mac"
+cask "fork"
 
 # comms and chats apps
 cask "telegram"

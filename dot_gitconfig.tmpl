@@ -1,0 +1,29 @@
+[user]
+  name = Alpha Shuro
+  email = "{{ .email }}"
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPzIgU1+V2cuZlgYwVVlvDmbv3R5i+hU1fLZOow4EbW8
+
+[gpg]
+  format = "ssh"
+
+{{- if eq .chezmoi.os "darwin" }}
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+{{- end }}
+
+[commit]
+  gpgsign = true
+
+[init]
+  defaultBranch = main
+
+[core]
+  autocrlf = input
+
+[github]
+  user = alphashuro
+
+[pull]
+  rebase = true

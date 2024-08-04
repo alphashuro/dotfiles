@@ -1,7 +1,12 @@
 {{- if ne .chezmoi.os "linux" }}
 
+.chezmoiscripts/1_linux/**
 .config/keyd
-private_dot_config/keyd
-run_once_after_install-link-keyd-mappings.sh
 
 {{- end }}
+{{- if ne .chezmoi.os "darwin" }}
+
+.chezmoiscripts/1_darwin/**
+
+{{- end }}
+

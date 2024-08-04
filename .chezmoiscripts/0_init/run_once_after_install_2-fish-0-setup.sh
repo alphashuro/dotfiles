@@ -1,10 +1,5 @@
 #!/bin/bash
 
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install \
-  | NONINTERACTIVE=1 fish
-
-fish -c 'omf install'
-
 sudo -A ln -si $(which fish) /usr/local/bin/fish
 
 if ! grep -q fish "/etc/shells"; then

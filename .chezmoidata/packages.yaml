@@ -1,0 +1,9 @@
+packages:
+  linux:
+    apt:
+      - 1password
+      - 1password-cli
+      - brave-browser
+      - kitty
+      - keyd
+
