@@ -1,9 +1,9 @@
 #!/bin/bash
 
-sudo -A ln -si $(which fish) /usr/local/bin/fish
+fish_path=$(which fish)
 
-if ! grep -q fish "/etc/shells"; then
-  echo /usr/local/bin/fish | sudo tee -a /etc/shells
+if ! grep -q $fish_path "/etc/shells"; then
+  echo $fish_path | sudo tee -a /etc/shells
 fi
 
-chsh -s /usr/local/bin/fish
+chsh -s $fish_path

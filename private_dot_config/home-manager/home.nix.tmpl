@@ -4,7 +4,7 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "alpha";
-  home.homeDirectory = "/home/alpha";
+  home.homeDirectory = {{ .chezmoi.homeDir }};
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -22,7 +22,6 @@
     pkgs.neovim
     pkgs.tailscale
     pkgs._1password
-    pkgs._1password-gui
     pkgs.kitty
     pkgs.discord
     pkgs.vscode
@@ -30,18 +29,21 @@
 
     # chat
     pkgs.telegram-desktop
-    pkgs.signal-desktop
     pkgs.slack
-    pkgs.nchat
+    # pkgs.nchat
 
     {{- if eq .chezmoi.os "linux" }}
+
+    pkgs._1password-gui # broken on mac for now
 
     pkgs.brave
     pkgs.keyd
     pkgs.dropbox
     pkgs.sublime
     pkgs.sublime-merge
+
     pkgs.whatsapp-for-linux
+    pkgs.signal-desktop
 
     {{- end }}
 
@@ -105,4 +107,10 @@
   # programs.kitty.enable = true;
 
   # services.tailscale.enable = true;
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
 }
