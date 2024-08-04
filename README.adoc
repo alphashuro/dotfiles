@@ -4,5 +4,5 @@ managed by https://www.chezmoi.io[chezmoi].
 
 quick setup:
 ```
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply alphashuro`
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply alphashuro
 ```
