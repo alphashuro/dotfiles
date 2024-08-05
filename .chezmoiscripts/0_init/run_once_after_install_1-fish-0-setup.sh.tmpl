@@ -3,7 +3,7 @@
 fish_path={{ lookPath "fish" }}
 
 if ! grep -q $fish_path "/etc/shells"; then
-  echo $fish_path | sudo -A tee -a /etc/shells
+  echo $fish_path | sudo tee -a /etc/shells
 fi
 
 chsh -s $fish_path

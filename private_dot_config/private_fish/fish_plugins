@@ -1,2 +1,3 @@
 lilyball/nix-env.fish
 oh-my-fish/plugin-foreign-env
+jorgebucaran/fisher
