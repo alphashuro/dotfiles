@@ -1,6 +1,6 @@
 #!{{ lookPath "bash" }}
 
-fish_path=$(which fish)
+fish_path={{ lookPath "fish" }}
 
 if ! grep -q $fish_path "/etc/shells"; then
   echo $fish_path | sudo tee -a /etc/shells
