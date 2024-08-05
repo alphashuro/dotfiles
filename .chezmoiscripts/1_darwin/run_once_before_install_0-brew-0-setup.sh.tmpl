@@ -1,0 +1,5 @@
+#!{{ lookPath "bash" }}
+
+type brew >/dev/null 2>&1 && exit
+
+sudo {{ lookPath "bash" }} -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
