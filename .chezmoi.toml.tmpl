@@ -6,6 +6,6 @@
 {{- if ne .chezmoi.os "linux" }}
 
 [scriptEnv]
-  SUDO_ASKPASS = "/usr/bin/ssh-askpass"
+  SUDO_ASKPASS = "{{ .chezmoi.homeDir }}/.nix-profile/bin/ssh-askpass-fullscreen"
 
 {{- end }}
