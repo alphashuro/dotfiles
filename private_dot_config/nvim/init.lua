@@ -30,13 +30,15 @@ now(function()
   vim.o.background = 'light'
 
   -- my custom simple theme
+  -- primarily for light mode
   vim.cmd("colorscheme quiet")
   vim.cmd[[highlight ColorColumn ctermbg=0 guibg=lightgrey]]
   vim.cmd[[highlight Keyword gui=bold guifg=black]]
   vim.cmd[[highlight Comment gui=italic guifg=darkgrey]]
   vim.cmd[[highlight Constant guifg=#777777]]
-  vim.cmd[[highlight NormalFloat guibg=black]]
+  vim.cmd[[highlight NormalFloat guibg=white]]
   vim.cmd[[highlight Normal guifg=black guibg=white]]
+
 end)
 
 now(function()
