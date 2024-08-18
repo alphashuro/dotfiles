@@ -1,11 +1,13 @@
-{{ $email := promptString "email" -}}
+{{ $email := promptStringOnce . "email" "What is your email address?" -}}
 
 [data]
     email = {{ $email | quote }}
 
 {{- if ne .chezmoi.os "linux" }}
-
 [scriptEnv]
   SUDO_ASKPASS = "{{ .chezmoi.homeDir }}/.nix-profile/bin/ssh-askpass-fullscreen"
 
 {{- end }}
+[merge]
+  command = "nvim"
+  args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]

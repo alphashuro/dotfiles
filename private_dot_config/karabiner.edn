@@ -1,50 +1,49 @@
 ;; edn spec https://github.com/edn-format/edn
 
-{
- :simlayers {:space-mode {:key :spacebar}}
- :simlayer-threshold 2000
-
- :main [
-        {:des "Caps Lock: tap for Escape, hold for Control." :rules [[:##caps_lock :left_control nil {:alone :escape}]]},
+{:main [{:des "Caps Lock: tap for Escape, hold for Control." :rules [[:##caps_lock :left_control nil {:alone :escape}]]},
         {:des "Swap colon and semi colon in Colemak." :rules [[:!Sp :p] [:p :!Sp]]},
-        {:des "Space symbols layer" :rules [[:q :!S1 :space-mode],
-                                          [:w :!S2 :space-mode],
-                                          [:e :!S3 :space-mode],
-                                          [:r :!S4 :space-mode],
-                                          [:t :!S5 :space-mode],
-                                          [:y :equal_sign :space-mode],
-                                          [:u :7 :space-mode],
-                                          [:i :8 :space-mode],
-                                          [:o :9 :space-mode],
-                                          [:p :!Sequal_sign :space-mode],
 
-                                          [:a :backslash :space-mode],
-                                          [:s :!Sbackslash :space-mode],
-                                          [:d :!Sopen_bracket :space-mode],
-                                          [:f :!S9 :space-mode],
-                                          [:g :open_bracket :space-mode],
-                                          [:h :!S8 :space-mode],
-                                          [:j :4 :space-mode],
-                                          [:k :5 :space-mode],
-                                          [:l :6 :space-mode],
-                                          [:semicolon :hyphen :space-mode],
-                                          [:quote :!Shyphen :space-mode],
-                                          ; todo: find a use for the backslash
-                                          [:backslash :backslash :space-mode],
+        {:des "Space symbols layer"
+         :rules [[:spacebar ["space-mode" 1] nil {:afterup ["space-mode" 0]
+                                                  :alone :spacebar}],
+                 [:q :!S1 ["space-mode" 1]],
+                 [:w :!S2 ["space-mode" 1]],
+                 [:e :!S3 ["space-mode" 1]],
+                 [:r :!S4 ["space-mode" 1]],
+                 [:t :!S5 ["space-mode" 1]],
+                 [:y :equal_sign ["space-mode" 1]],
+                 [:u :7 ["space-mode" 1]],
+                 [:i :8 ["space-mode" 1]],
+                 [:o :9 ["space-mode" 1]],
+                 [:p :!Sequal_sign ["space-mode" 1]],
 
-                                          ; this part is only valid for ISO keyboards
-                                          ; and will need to be shifted to the right for ANSI
-                                          [:grave_accent_and_tilde :!S6 :space-mode],
-                                          [:z :!S7 :space-mode],
-                                          [:x :!Sclose_bracket :space-mode],
-                                          [:c :!S0 :space-mode],
-                                          [:v :close_bracket :space-mode],
-                                          [:b :backslash :space-mode],
-                                          [:n :0 :space-mode],
-                                          [:m :1 :space-mode],
-                                          [:comma :2 :space-mode],
-                                          [:period :3 :space-mode],
-                                          ; consider changing this to something more useful?
-                                          [:slash :slash :space-mode],
-                                          ]}
+                 [:a :backslash ["space-mode" 1]],
+                 [:s :!Sbackslash ["space-mode" 1]],
+                 [:d :!Sopen_bracket ["space-mode" 1]],
+                 [:f :!S9 ["space-mode" 1]],
+                 [:g :open_bracket ["space-mode" 1]],
+                 [:h :!S8 ["space-mode" 1]],
+                 [:j :4 ["space-mode" 1]],
+                 [:k :5 ["space-mode" 1]],
+                 [:l :6 ["space-mode" 1]],
+                 [:semicolon :hyphen ["space-mode" 1]],
+                 [:quote :!Shyphen ["space-mode" 1]],
+                 ; todo: find a use for the backslash
+                 [:backslash :backslash ["space-mode" 1]],
+
+                 ; this part is only valid for ISO keyboards
+                 ; and will need to be shifted to the right for ANSI
+                 [:grave_accent_and_tilde :!S6 ["space-mode" 1]],
+                 [:z :!S7 ["space-mode" 1]],
+                 [:x :!Sclose_bracket ["space-mode" 1]],
+                 [:c :!S0 ["space-mode" 1]],
+                 [:v :close_bracket ["space-mode" 1]],
+                 [:b :backslash ["space-mode" 1]],
+                 [:n :0 ["space-mode" 1]],
+                 [:m :1 ["space-mode" 1]],
+                 [:comma :2 ["space-mode" 1]],
+                 [:period :3 ["space-mode" 1]],
+                 ; consider changing this to something more useful?
+                 [:slash :slash ["space-mode" 1]],
+                 ]},
 ]}

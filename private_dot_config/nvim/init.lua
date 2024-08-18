@@ -16,9 +16,10 @@ if not vim.loop.fs_stat(mini_path) then
 end
 
 -- Set up 'mini.deps'
-require("mini.deps").setup({ path = { package = path_package } })
+local minideps = require("mini.deps")
+minideps.setup({ path = { package = path_package } })
 
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+local add, now, later = minideps.add, minideps.now, minideps.later
 
 now(function()
   add({
@@ -27,19 +28,27 @@ now(function()
   require('monokai-pro').setup()
 
   vim.o.termguicolors = true
-  vim.o.background = 'light'
+  vim.o.background = 'dark'
+  -- vim.o.colorscheme = 'randomhue'
 
   -- my custom simple theme
   -- primarily for light mode
-  vim.cmd("colorscheme quiet")
-  vim.cmd[[highlight ColorColumn ctermbg=0 guibg=lightgrey]]
-  vim.cmd[[highlight Keyword gui=bold guifg=black]]
-  vim.cmd[[highlight Comment gui=italic guifg=darkgrey]]
-  vim.cmd[[highlight Constant guifg=#777777]]
-  vim.cmd[[highlight NormalFloat guibg=white]]
-  vim.cmd[[highlight Normal guifg=black guibg=white]]
+  vim.cmd("colorscheme monokai-pro-spectrum")
+  -- vim.cmd[[highlight ColorColumn ctermbg=0 guibg=lightgrey]]
+  -- vim.cmd[[highlight Keyword gui=NONE guifg=#333333]]
+  -- vim.cmd[[highlight Identifier gui=NONE guifg=#333333]]
+  -- vim.cmd[[highlight Special gui=NONE guifg=#333333]]
+  -- vim.cmd[[highlight Comment gui=italic guifg=grey]]
+  -- vim.cmd[[highlight Constant guifg=#777777]]
+  -- vim.cmd[[highlight NormalFloat guibg=white]]
+  -- vim.cmd[[highlight Normal guifg=#555555 guibg=white]]
 
+  -- Type, Special, Statement, @markup.strong|italic|strikethrough
 end)
+
+local function lclue(suffix, desc)
+  return { mode = 'n', keys = '<Leader>' .. suffix, desc = desc }
+end
 
 now(function()
   require("mini.basics").setup({
@@ -54,9 +63,11 @@ now(function()
   require("mini.statusline").setup()
   -- require("mini.base16").setup()
   require("mini.align").setup()
-  require("mini.clue").setup()
 
-  MiniClue.setup({
+  local miniclue = require("mini.clue")
+  miniclue.setup()
+
+  miniclue.setup({
     triggers = {
       -- Leader triggers
       { mode = 'n', keys = '<Leader>' },
@@ -91,18 +102,21 @@ now(function()
 
     clues = {
       -- Enhance this by adding descriptions for <Leader> mapping groups
-      MiniClue.gen_clues.builtin_completion(),
-      MiniClue.gen_clues.g(),
-      MiniClue.gen_clues.marks(),
-      MiniClue.gen_clues.registers(),
-      MiniClue.gen_clues.windows(),
-      MiniClue.gen_clues.z(),
-      { mode = 'n', keys = '<Leader>c',     desc = "Code" },
-      { mode = 'n', keys = '<Leader>f',     desc = "Files" },
-      { mode = 'n', keys = '<Leader><Tab>', desc = 'Tabs' },
-      { mode = 'n', keys = '<Leader>d',     desc = 'Debug' },
-      { mode = 'n', keys = '<Leader>g',     desc = 'Git' },
-      { mode = 'n', keys = '<Leader>t',     desc = 'Toggle' }
+      miniclue.gen_clues.builtin_completion(),
+      miniclue.gen_clues.g(),
+      miniclue.gen_clues.marks(),
+      miniclue.gen_clues.registers(),
+      miniclue.gen_clues.windows(),
+      miniclue.gen_clues.z(),
+      lclue('c', 'Code'),
+      lclue('c', 'Code'),
+      lclue('f', 'Files'),
+      lclue('<Tab>', 'Tabs'),
+      lclue('d', 'Debug'),
+      lclue('g', 'Git'),
+      lclue('t', 'Toggle'),
+      lclue('o', 'Org'),
+      lclue('b', 'Buffers'),
     },
 
     window = {
@@ -113,7 +127,10 @@ now(function()
     }
   })
   require("mini.diff").setup()
-  require("mini.extra").setup()
+
+  local miniextra = require("mini.extra")
+  miniextra.setup()
+
   require("mini.files").setup({
     mappings = {
       go_in_plus = '<CR>'
@@ -126,9 +143,9 @@ now(function()
   local hipatterns = require("mini.hipatterns")
   hipatterns.setup({
     highlighters = {
-      fixme = MiniExtra.gen_highlighter.words({ 'FIXME', 'fixme' }, 'MiniHipatternsFixme'),
-      todo = MiniExtra.gen_highlighter.words({ 'TODO', 'todo' }, 'MiniHipatternsTodo'),
-      note = MiniExtra.gen_highlighter.words({ 'NOTE', 'note' }, 'MiniHipatternsNote'),
+      fixme = miniextra.gen_highlighter.words({ 'FIXME', 'fixme' }, 'MiniHipatternsFixme'),
+      todo = miniextra.gen_highlighter.words({ 'TODO', 'todo' }, 'MiniHipatternsTodo'),
+      note = miniextra.gen_highlighter.words({ 'NOTE', 'note' }, 'MiniHipatternsNote'),
 
       hex_color = hipatterns.gen_highlighter.hex_color(),
     },
@@ -146,11 +163,11 @@ now(function()
   require("mini.splitjoin").setup()
   require("mini.ai").setup({
     custom_textobjects = {
-      B = MiniExtra.gen_ai_spec.buffer(),
-      D = MiniExtra.gen_ai_spec.diagnostic(),
-      I = MiniExtra.gen_ai_spec.indent(),
-      L = MiniExtra.gen_ai_spec.line(),
-      N = MiniExtra.gen_ai_spec.number(),
+      B = miniextra.gen_ai_spec.buffer(),
+      D = miniextra.gen_ai_spec.diagnostic(),
+      I = miniextra.gen_ai_spec.indent(),
+      L = miniextra.gen_ai_spec.line(),
+      N = miniextra.gen_ai_spec.number(),
     },
   })
   require("mini.comment").setup()
@@ -166,7 +183,11 @@ now(function()
       minimap.gen_integration.gitsigns(),
     }
   })
-  minimap.open()
+
+  if not vim.opt.diff:get() then
+    -- vim diff tries to open the second buffer in the minimap
+    minimap.open()
+  end
 
   add({
     source = "nvim-treesitter/nvim-treesitter",
@@ -320,6 +341,8 @@ later(function()
   require("fidget").setup({})
   require("lazydev").setup()
 
+  local miniextra = require('mini.extra')
+
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('lsp-mappings-attach', { clear = true }),
     callback = function(event)
@@ -330,7 +353,7 @@ later(function()
         map('<Leader>' .. keys, func, desc)
       end
 
-      local lspick = MiniExtra.pickers.lsp
+      local lspick = miniextra.pickers.lsp
       local lspope = function(scope)
         return function() lspick({ scope = scope }) end
       end
@@ -412,13 +435,15 @@ later(
 local nmap_leader = function(suffix, rhs, desc)
   vim.keymap.set('n', '<Leader>' .. suffix, rhs, { desc = desc })
 end
-local xmap_leader = function(suffix, rhs, desc)
-  vim.keymap.set('x', '<Leader>' .. suffix, rhs, { desc = desc })
-end
 
 -- mappings
 -- buffers
-nmap_leader('bb', MiniPick.builtin.buffers, 'Find buffer')
+local minipick = require('mini.pick')
+local miniextra = require('mini.extra')
+local minimap = require('mini.map')
+local minifiles = require('mini.files')
+
+nmap_leader('bb', minipick.builtin.buffers, 'Find buffer')
 
 -- tabs
 nmap_leader('<Tab>n', '<CMD>tabnew<CR>', 'New tab')
@@ -432,24 +457,24 @@ nmap_leader('cr', vim.lsp.buf.rename, 'Rename')
 nmap_leader('cR', vim.lsp.buf.references, 'References')
 nmap_leader('cci', vim.lsp.buf.incoming_calls, 'Incoming calls')
 nmap_leader('cco', vim.lsp.buf.outgoing_calls, 'Outgoing calls')
-vim.keymap.set('n', 'ch', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
-nmap_leader('cX', MiniExtra.pickers.diagnostic, 'Diagnostics')
+nmap_leader('ch', vim.lsp.buf.hover, 'Hover Documentation')
+nmap_leader('cX', miniextra.pickers.diagnostic, 'Diagnostics')
 nmap_leader('cx', vim.diagnostic.open_float, 'Diagnostics')
 nmap_leader('ca', vim.lsp.buf.code_action, 'Actions')
 
 -- file mappings
-nmap_leader('ff', MiniPick.builtin.files, 'Fuzzy file finder')
-nmap_leader(' ', MiniPick.builtin.files, 'Fuzzy file finder')
-nmap_leader('/', MiniPick.builtin.grep_live, 'Live grep in all files')
-nmap_leader('f/', MiniPick.builtin.grep_live, 'Live grep in all files')
+nmap_leader('ff', minipick.builtin.files, 'Fuzzy file finder')
+nmap_leader(' ', minipick.builtin.files, 'Fuzzy file finder')
+nmap_leader('/', minipick.builtin.grep_live, 'Live grep in all files')
+nmap_leader('f/', minipick.builtin.grep_live, 'Live grep in all files')
 
 -- debugger keymaps are set in plugin hooks
 
 -- git mappings
-nmap_leader('gb', MiniExtra.pickers.git_branches, 'Change git branch')
+nmap_leader('gb', miniextra.pickers.git_branches, 'Change git branch')
 
 -- toggle mappings
-nmap_leader('tm', MiniMap.toggle, 'Toggle minimap')
+nmap_leader('tm', minimap.toggle, 'Toggle minimap')
 nmap_leader('tr', '<CMD>source $MYVIMRC<CR>', 'Reload config')
 nmap_leader('tw', '<CMD>setlocal wrap! wrap?<CR>', 'Toggle word wrap')
 nmap_leader('ts', '<CMD>setlocal spell! spell?<CR>', 'Toggle spell')
@@ -462,9 +487,9 @@ nmap_leader('th',
 nmap_leader('td', '<Cmd>lua print(MiniBasics.toggle_diagnostic())<CR>', 'Toggle diagnostic')
 
 -- other leader mappings
-nmap_leader('ft', MiniFiles.open, 'Open file tree')
-nmap_leader('?', MiniExtra.pickers.commands, 'Command me')
-nmap_leader('*', function() MiniExtra.pickers.buf_lines({ scope = 'current' }) end, 'Find in buffer')
+nmap_leader('ft', minifiles.open, 'Open file tree')
+nmap_leader('?', miniextra.pickers.commands, 'Command me')
+nmap_leader('*', function() miniextra.pickers.buf_lines({ scope = 'current' }) end, 'Find in buffer')
 
 -- other mappings
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
@@ -489,3 +514,40 @@ vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.exrc = true
+
+vim.api.nvim_create_user_command(
+  'DiffOrig',
+  'vert new | set buftype=nofile | read ++edit # | 0d_ | diffthis | wincmd p | diffthis',
+  {}
+)
+
+-- some shortcuts for working with vimdiff
+if vim.opt.diff:get() then
+  vim.b.miniclue_config = {
+    clues = {
+      lclue('m', 'Diff commands'),
+    }
+  }
+
+  vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+    callback = function(args)
+      if (args.buf == 1) or (args.buf == 3) then
+        vim.keymap.set('n', '<Leader>mp', ':diffput 2<CR>', { desc = 'Copy change to result', buffer = args.buf })
+        vim.keymap.set('n', '<Leader>mP', ':1,$+1diffput 2<CR>', { desc = 'Copy all changes to result', buffer = args.buf })
+      end
+
+      if (args.buf == 2) then
+        vim.b.miniclue_config = {
+          clues = {
+            lclue('mg', 'Get changes from...'),
+          }
+        }
+
+        vim.keymap.set('n', '<Leader>mg1', ':diffget 1<CR>', { desc = 'Get change from buff 1', buffer = args.buf })
+        vim.keymap.set('n', '<Leader>mg1', ':%+1diffget 1<CR>', { desc = 'Get all changes from buff 1', buffer = args.buf })
+        vim.keymap.set('n', '<Leader>mg3', ':diffget 3<CR>', { desc = 'Get change from buff 3', buffer = args.buf })
+        vim.keymap.set('n', '<Leader>mg3', ':%+1diffget 3<CR>', { desc = 'Get all changes from buff 3', buffer = args.buf })
+      end
+    end
+  })
+end
