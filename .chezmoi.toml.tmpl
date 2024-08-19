@@ -1,13 +1,21 @@
 {{ $email := promptStringOnce . "email" "What is your email address?" -}}
-
+{{ $contextChoices := list "personal" "pleo" "server" -}}
+{{ $context := promptChoiceOnce . "context" "What is this machine's purpose?" $contextChoices -}}
+{{ $canGame := promptBoolOnce . "canGame" "Do you want to install gaming apps on this machine?" (eq $context "personal") -}}
+{{ $canChat := promptBoolOnce . "canChat" "Do you want to install chat apps on this machine?" (eq $context "personal") -}}
 [data]
-    email = {{ $email | quote }}
+  email = {{ $email | quote }}
+  context = {{ $context | quote }}
+  canGame = {{ $canGame }}
+  canChat = {{ $canChat }}
 
-{{- if ne .chezmoi.os "linux" }}
+{{ if eq .chezmoi.os "linux" -}}
+
 [scriptEnv]
   SUDO_ASKPASS = "{{ .chezmoi.homeDir }}/.nix-profile/bin/ssh-askpass-fullscreen"
 
-{{- end }}
+{{end -}}
+
 [merge]
   command = "nvim"
   args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]

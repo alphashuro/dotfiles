@@ -1,37 +1,38 @@
 tap "homebrew/bundle"
 
 # essentials
-# brew "chezmoi"
+brew "chezmoi"
 brew "coreutils"
-# brew "wget"
-# brew "neovim"
-# brew "zoxide"
-# brew "bat" # better cat
-# brew "htop"
+brew "wget"
+brew "neovim"
+brew "zoxide"
+brew "bat" # better cat
+brew "htop"
 brew "ripgrep"
-# brew "fish"
-# brew "fisher"
-# brew "starship"
-# brew "fzf"
+brew "fish"
+brew "fisher"
+brew "starship"
+brew "fzf"
 brew "fd"
 brew "gls"
 brew "editorconfig"
 brew "shfmt"
 brew "shellcheck"
-# brew "zellij"
-# brew "broot"
-# brew "yazi"
-# brew "luarocks" # neovim dependency?
-# brew "the_silver_searcher"
+brew "zellij"
+brew "broot"
+brew "yazi"
+brew "luarocks" # neovim dependency?
+brew "the_silver_searcher"
 brew "font-monaspace"
 
 # dev
-# brew "git"
-# brew "lazygit"
-# brew "direnv"
-# brew "helix"
+brew "git"
+brew "lazygit"
+brew "direnv"
+brew "helix"
+brew gh
 
-{{- if eq .chezmoi.os "darwin"}}
+{{- if eq .chezmoi.os "darwin" }}
 brew "mas"
 
 # ******** casks
@@ -41,26 +42,38 @@ brew "yqrashawn/goku/goku"
 cask "1password-cli"
 cask "1password"
 mas "1Password for Safari", id: 1333542190
-cask "dropbox"
 cask "kitty"
 cask "raindropio"
-cask "tailscale"
 cask "brave-browser"
+cask "arc"
 cask "monitorcontrol"
 cask "devutils"
-
 cask "karabiner-elements"
+
+cask "tailscale"
+cask "dropbox"
+
+# dev
+cask "sublime-text"
+cask "sublime-merge"
+cask "visual-studio-code"
+tap "railwaycat/emacsmacport"
+cask "emacs-mac", args: ["with-unlimited-select", "with-native-compilation", "with-imagemagick", "with-mac-metal", "with-glib", "with-dbus"]
+
+{{ if eq $context "pleo" }}
+cask "intellij-idea"
+{{ end -}}
+
+{{- if $canGame }}
 
 # gaming
 cask "discord"
 cask "steam"
 cask "battle-net"
 
-# dev
-cask "sublime-text"
-cask "sublime-merge"
-cask "visual-studio-code"
-cask "emacs"
+{{- end }} # gaming section
+
+{{- if $canChat }}
 
 # comms and chats apps
 cask "telegram"
@@ -68,4 +81,6 @@ cask "slack"
 cask "signal"
 cask "whatsapp"
 
-{{- end }}
+{{- end }} # chat apps
+
+{{- end }} # darwin section

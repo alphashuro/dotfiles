@@ -1,7 +1,16 @@
 [user]
   name = Alpha Shuro
   email = "{{ .email }}"
+
+  {{- if eq $context "personal" -}}
+
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPzIgU1+V2cuZlgYwVVlvDmbv3R5i+hU1fLZOow4EbW8
+
+  {{- elseif eq $context "pleo" -}}
+
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA5NJ5V3HZTt2nw/62avTrya49HkKDZGXO9nrmrmckgg
+
+  {{- end }}
 
 [gpg]
   format = "ssh"
@@ -28,3 +37,13 @@
 
 [pull]
   rebase = true
+
+[rebase]
+  autostash = true
+
+[credential]
+  helper = manager
+
+[push]
+  autoSetupRemote = true
+  default = current

@@ -1,4 +1,4 @@
-note: this file will only reload if you run `+literate/reload` or `doom sync`.
+{{ $email := promptStringOnce . "email" "What is your email address?" -}}
 
 * Meta
 Not sure what this is for, adding it just in case
@@ -12,7 +12,7 @@ User/machine specific config
 
 #+begin_src elisp
 (setq user-full-name "Alpha Shuro")
-;;       user-mail-address "john@doe.com")
+      user-mail-address "{{ $email }}")
 #+end_src
 
 Editor setup
@@ -27,9 +27,6 @@ Editor setup
 (setq-default indent-tabs-mode nil)
 (setq indent-line-function 'insert-tab)
 #+end_src
-
-#+RESULTS:
-: 2
 
 Apparently doom is not compatible with fish, so I need to set it to use a POSIX shell
 
