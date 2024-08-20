@@ -3,7 +3,7 @@
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "alpha";
+  home.username = "{{ .chezmoi.username }}";
   home.homeDirectory = {{ .chezmoi.homeDir }};
 
   # This value determines the Home Manager release that your configuration is
