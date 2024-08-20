@@ -365,6 +365,8 @@ later(function()
       mapl('cR', lspope('references'), 'References')
       mapl('ct', lspope('type_definition'), 'Type definition')
       mapl('cS', lspope('workspace_symbol'), 'Workspace symbol')
+      map('gd', vim.lsp.buf.definition, 'Go to definition [lsp]')
+
       vim.api.nvim_create_autocmd('LspDetach', {
         group = vim.api.nvim_create_augroup('lsp-mappings-detach', { clear = true }),
         callback = function()
@@ -379,6 +381,10 @@ later(function()
     float = {
       source = 'if_many',
     },
+  })
+
+  add({
+    source = 'm4xshen/hardtime.nvim'
   })
 end)
 
@@ -461,6 +467,7 @@ nmap_leader('ch', vim.lsp.buf.hover, 'Hover Documentation')
 nmap_leader('cX', miniextra.pickers.diagnostic, 'Diagnostics')
 nmap_leader('cx', vim.diagnostic.open_float, 'Diagnostics')
 nmap_leader('ca', vim.lsp.buf.code_action, 'Actions')
+
 
 -- file mappings
 nmap_leader('ff', minipick.builtin.files, 'Fuzzy file finder')

@@ -14,7 +14,6 @@ brew "fisher"
 brew "starship"
 brew "fzf"
 brew "fd"
-brew "gls"
 brew "editorconfig"
 brew "shfmt"
 brew "shellcheck"
@@ -23,14 +22,15 @@ brew "broot"
 brew "yazi"
 brew "luarocks" # neovim dependency?
 brew "the_silver_searcher"
-brew "font-monaspace"
 
 # dev
 brew "git"
 brew "lazygit"
 brew "direnv"
 brew "helix"
-brew gh
+brew "gh"
+tap "railwaycat/emacsmacport"
+brew "emacs-mac", args: ["with-native-compilation", "with-imagemagick", "with-mac-metal", "with-modules"]
 
 {{- if eq .chezmoi.os "darwin" }}
 brew "mas"
@@ -49,6 +49,7 @@ cask "arc"
 cask "monitorcontrol"
 cask "devutils"
 cask "karabiner-elements"
+cask "font-monaspace"
 
 cask "tailscale"
 cask "dropbox"
@@ -57,14 +58,14 @@ cask "dropbox"
 cask "sublime-text"
 cask "sublime-merge"
 cask "visual-studio-code"
-tap "railwaycat/emacsmacport"
-cask "emacs-mac", args: ["with-unlimited-select", "with-native-compilation", "with-imagemagick", "with-mac-metal", "with-glib", "with-dbus"]
+# tap "d12frosted/emacs-plus"
+# brew "emacs-plus", args: ["with-native-comp", "with-imagemagick"]
 
-{{ if eq $context "pleo" }}
+{{ if eq .context "pleo" }}
 cask "intellij-idea"
 {{ end -}}
 
-{{- if $canGame }}
+{{- if .canGame -}}
 
 # gaming
 cask "discord"
@@ -73,7 +74,7 @@ cask "battle-net"
 
 {{- end }} # gaming section
 
-{{- if $canChat }}
+{{- if .canChat }}
 
 # comms and chats apps
 cask "telegram"

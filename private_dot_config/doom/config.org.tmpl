@@ -1,5 +1,3 @@
-{{ $email := promptStringOnce . "email" "What is your email address?" -}}
-
 * Meta
 Not sure what this is for, adding it just in case
 
@@ -11,8 +9,8 @@ Not sure what this is for, adding it just in case
 User/machine specific config
 
 #+begin_src elisp
-(setq user-full-name "Alpha Shuro")
-      user-mail-address "{{ $email }}")
+(setq user-full-name "Alpha Shuro"
+      user-mail-address "{{ .email }}")
 #+end_src
 
 Editor setup
