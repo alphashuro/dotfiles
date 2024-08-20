@@ -33,15 +33,12 @@ tap "railwaycat/emacsmacport"
 brew "emacs-mac", args: ["with-native-compilation", "with-imagemagick", "with-mac-metal", "with-modules"]
 
 {{- if eq .chezmoi.os "darwin" }}
-brew "mas"
-
 # ******** casks
 brew "yqrashawn/goku/goku"
 
 # essentials
 cask "1password-cli"
 cask "1password"
-mas "1Password for Safari", id: 1333542190
 cask "kitty"
 cask "raindropio"
 cask "brave-browser"
