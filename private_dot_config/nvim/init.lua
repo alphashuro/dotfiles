@@ -23,17 +23,22 @@ local add, now, later = minideps.add, minideps.now, minideps.later
 
 now(function()
   add({
-    source = 'loctvl842/monokai-pro.nvim'
+    source = 'loctvl842/monokai-pro.nvim',
+    priority = 1000
   })
   require('monokai-pro').setup()
+  add({
+    source = 'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000
+  })
 
   vim.o.termguicolors = true
-  vim.o.background = 'dark'
-  -- vim.o.colorscheme = 'randomhue'
+  vim.o.background = 'light'
+  vim.cmd.colorscheme 'catppuccin-latte'
 
   -- my custom simple theme
   -- primarily for light mode
-  vim.cmd("colorscheme monokai-pro-spectrum")
   -- vim.cmd[[highlight ColorColumn ctermbg=0 guibg=lightgrey]]
   -- vim.cmd[[highlight Keyword gui=NONE guifg=#333333]]
   -- vim.cmd[[highlight Identifier gui=NONE guifg=#333333]]
@@ -151,9 +156,17 @@ now(function()
     },
   })
   require("mini.jump").setup()
-  require("mini.jump2d").setup()
+  require("mini.jump2d").setup({
+    mappings = {
+      start_jumping = '<leader>j',
+    },
+  })
   require("mini.move").setup()
-  require("mini.operators").setup()
+  require("mini.operators").setup({
+    exchange = {
+      prefix = '<leader>ex'
+    }
+  })
   require("mini.sessions").setup()
   require("mini.test").setup()
   require("mini.trailspace").setup()
@@ -305,6 +318,7 @@ later(function()
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   local servers = {
+    marksman = {},
     lua_ls = {
       settings = {
         Lua = {

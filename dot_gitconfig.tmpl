@@ -17,7 +17,7 @@
   {{ if eq .chezmoi.os "linux" }}
   program = "{{ lookPath "op-ssh-sign" }}"
   {{- end }}
-  {{ if eq .chezmoi.os "darwin" }}
+  {{- if eq .chezmoi.os "darwin" }}
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
   {{- end }}
 
@@ -45,3 +45,12 @@
 [push]
   autoSetupRemote = true
   default = current
+
+[diff]
+  tool = nvim -d
+
+[merge]
+  tool = nvim -d
+
+[difftool]
+  prompt = false
