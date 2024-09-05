@@ -1,0 +1,78 @@
+{
+  "editor.tabSize": 2,
+
+  "window.autoDetectColorScheme": true,
+  "workbench.colorTheme": "Catppuccin Latte",
+  "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
+  "workbench.preferredLightColorTheme": "Catppuccin Latte",
+
+  "terminal.integrated.profiles.osx": {
+    "fish": {
+      "path": "fish",
+      "args": ["-l"]
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "fish",
+
+  // Vim easymotion is required for Jump menu - <SPC> j
+  "vim.easymotion": true,
+  // Use system clipboard for vim
+  "vim.useSystemClipboard": true,
+  // Trigger the main which key menu with in the active editor with vim
+  // This cannot be put into keybindings.json because it will
+  // create conflict with Vim.
+  // https://github.com/stevenguh/spacecode/issues/3
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<space>"],
+      "commands": ["vspacecode.space"]
+    },
+    {
+      "before": [","],
+      "commands": [
+        "vspacecode.space",
+        {
+          "command": "whichkey.triggerKey",
+          "args": "m"
+        }
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<space>"],
+      "commands": ["vspacecode.space"]
+    },
+    {
+      "before": [","],
+      "commands": [
+        "vspacecode.space",
+        {
+          "command": "whichkey.triggerKey",
+          "args": "m"
+        }
+      ]
+    }
+  ],
+
+  "editor.fontSize": 13,
+
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "foam.openDailyNote.directory": "journal",
+  "foam.openDailyNote.onStartup": true,
+  "foam.completion.useAlias": "whenPathDiffersFromTitle",
+  "foam.dateSnippets.afterCompletion": "noop",
+  "foam.edit.linkReferenceDefinitions": "withExtensions",
+}
