@@ -21,3 +21,14 @@ if status is-interactive
 
     alias k=kubectl
 end
+source "$HOME/.config/op/plugins.sh"
+
+{{- if eq .context "pleo" }}
+
+source ~/projects/pleo/bin/oo.fish
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+set --export --prepend PATH "$HOME/.rd/bin"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+{{end}}

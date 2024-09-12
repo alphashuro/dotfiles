@@ -171,7 +171,9 @@ now(function()
   require("mini.test").setup()
   require("mini.trailspace").setup()
   require("mini.visits").setup()
-  require("mini.bracketed").setup()
+  require("mini.bracketed").setup({
+    undo = { suffix = '' }
+  })
   require("mini.indentscope").setup()
   require("mini.splitjoin").setup()
   require("mini.ai").setup({
