@@ -11,6 +11,9 @@ end
 # seems necessary on macos for now
 fish_add_path /run/current-system/sw/bin
 
+# support cargo apps
+fish_add_path $HOME/.cargo/bin
+
 if status is-interactive
     set -U fish_greeting
     set -x EDITOR nvim
