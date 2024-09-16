@@ -320,7 +320,7 @@ later(function()
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   local servers = {
-    marksman = {},
+    markdown_oxide = {},
     lua_ls = {
       settings = {
         Lua = {
