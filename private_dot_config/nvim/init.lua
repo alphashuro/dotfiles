@@ -483,6 +483,7 @@ nmap_leader('ch', vim.lsp.buf.hover, 'Hover Documentation')
 nmap_leader('cX', miniextra.pickers.diagnostic, 'Diagnostics')
 nmap_leader('cx', vim.diagnostic.open_float, 'Diagnostics')
 nmap_leader('ca', vim.lsp.buf.code_action, 'Actions')
+nmap_leader('a', vim.lsp.buf.code_action, 'LSP Actions')
 
 
 -- file mappings
@@ -516,6 +517,7 @@ nmap_leader('*', function() miniextra.pickers.buf_lines({ scope = 'current' }) e
 
 -- other mappings
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
+vim.keymap.set('n', '<CR>', vim.lsp.buf.definition, { desc = 'Go to definition [lsp]' })
 
 -- neovide settings
 if vim.g.neovide then

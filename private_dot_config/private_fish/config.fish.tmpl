@@ -4,6 +4,8 @@ eval "$({{ lookPath "brew" }} shellenv)"
 
 {{end -}}
 
+eval "$({{ lookPath "devbox" }} global shellenv)"
+
 if type -q fenv
   fenv source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 end
