@@ -32,10 +32,16 @@ now(function()
     name = 'catppuccin',
     priority = 1000
   })
+  require('catppuccin').setup()
+  add({
+    source = 'navarasu/onedark.nvim',
+    priority = 1000
+  })
+  require('onedark').setup()
 
   vim.o.termguicolors = true
   vim.o.background = 'light'
-  vim.cmd.colorscheme 'catppuccin-latte'
+  vim.cmd.colorscheme 'onedark'
 
   -- my custom simple theme
   -- primarily for light mode
