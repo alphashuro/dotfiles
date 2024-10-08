@@ -238,6 +238,9 @@ now(function()
     ignore_install = { "org" }
   })
 
+  vim.o.foldmethod = "expr";
+  vim.o.foldexpr= "nvim_treesitter#foldexpr()";
+
   add({
     source = 'simnalamburt/vim-mundo',
     hooks = {
@@ -388,6 +391,7 @@ now(function()
             },
           },
         },
+        sourcekit = {}
       }
       require('mason').setup()
 
@@ -473,13 +477,23 @@ now(function()
       require("hardtime").setup()
 
       add({
-        source = 'iamcco/markdown-preview.nvim',
-        hooks = {
-          post_checkout = function()
-            vim.fn["mkdp#util#install"]()
-          end
+        source = "OXY2DEV/markview.nvim",
+        depends = {
+          "nvim-treesitter/nvim-treesitter",
+          "nvim-tree/nvim-web-devicons"
         }
       })
+      require("markview").setup({
+        hybrid_modes = { "n" }
+      });
+      -- add({
+      --   source = 'iamcco/markdown-preview.nvim',
+      --   hooks = {
+      --     post_checkout = function()
+      --       vim.fn["mkdp#util#install"]()
+      --     end
+      --   }
+      -- })
     end)
 
     -- debug adapter
