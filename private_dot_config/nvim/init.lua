@@ -238,8 +238,8 @@ now(function()
     ignore_install = { "org" }
   })
 
-  vim.o.foldmethod = "expr";
-  vim.o.foldexpr= "nvim_treesitter#foldexpr()";
+  -- vim.o.foldmethod = "expr";
+  -- vim.o.foldexpr= "nvim_treesitter#foldexpr()";
 
   add({
     source = 'simnalamburt/vim-mundo',
@@ -346,6 +346,10 @@ now(function()
       })
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.foldingRange = {
+          dynamicRegistration = false,
+          lineFoldingOnly = true
+      }
       local servers = {
         markdown_oxide = {
           -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
@@ -466,15 +470,15 @@ now(function()
         },
       })
 
-      add({
-        source = 'm4xshen/hardtime.nvim',
-        depends = {
-          "MunifTanjim/nui.nvim",
-          "nvim-lua/plenary.nvim",
-        }
-      })
+      -- add({
+      --   source = 'm4xshen/hardtime.nvim',
+      --   depends = {
+      --     "MunifTanjim/nui.nvim",
+      --     "nvim-lua/plenary.nvim",
+      --   }
+      -- })
 
-      require("hardtime").setup()
+      -- require("hardtime").setup()
 
       add({
         source = "OXY2DEV/markview.nvim",
@@ -494,6 +498,26 @@ now(function()
       --     end
       --   }
       -- })
+
+      add({
+        source = 'kevinhwang91/nvim-ufo',
+        depends = {
+            "kevinhwang91/promise-async"
+        },
+      })
+      require('ufo').setup({
+        provider_selector = function(bufnr, filetype, buftype)
+            return {'treesitter', 'indent'}
+        end
+      })
+
+      vim.o.foldcolumn = '1'
+      vim.o.foldlevel = 99
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+
+      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
     end)
 
     -- debug adapter
