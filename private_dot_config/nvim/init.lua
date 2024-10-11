@@ -473,224 +473,224 @@ now(function()
       })
 
       -- add({
-      --   source = 'm4xshen/hardtime.nvim',
-      --   depends = {
-      --     "MunifTanjim/nui.nvim",
-      --     "nvim-lua/plenary.nvim",
-      --   }
-      -- })
+        --   source = 'm4xshen/hardtime.nvim',
+        --   depends = {
+          --     "MunifTanjim/nui.nvim",
+          --     "nvim-lua/plenary.nvim",
+          --   }
+          -- })
 
-      -- require("hardtime").setup()
+          -- require("hardtime").setup()
 
-      add({
-        source = "OXY2DEV/markview.nvim",
-        depends = {
-          "nvim-treesitter/nvim-treesitter",
-          "nvim-tree/nvim-web-devicons"
-        }
-      })
-      require("markview").setup({
-        hybrid_modes = nil
-      });
-      -- add({
-      --   source = 'iamcco/markdown-preview.nvim',
-      --   hooks = {
-      --     post_checkout = function()
-      --       vim.fn["mkdp#util#install"]()
-      --     end
-      --   }
-      -- })
-
-      add({
-        source = 'kevinhwang91/nvim-ufo',
-        depends = {
-            "kevinhwang91/promise-async"
-        },
-      })
-      require('ufo').setup({
-        provider_selector = function(bufnr, filetype, buftype)
-            return {'treesitter', 'indent'}
-        end
-      })
-
-      vim.o.foldcolumn = '1'
-      vim.o.foldlevel = 99
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
-
-      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-    end)
-
-    -- debug adapter
-    later(
-    function()
-      add({
-        source = 'mfussenegger/nvim-dap',
-        depends = {
-          -- Creates a beautiful debugger UI
-          'rcarriga/nvim-dap-ui',
-
-          -- Required dependency for nvim-dap-ui
-          'nvim-neotest/nvim-nio',
-
-          -- Installs the debug adapters for you
-          'williamboman/mason.nvim',
-          'jay-babu/mason-nvim-dap.nvim',
-
-          -- Add your own debuggers here
-          'leoluz/nvim-dap-go',
-        },
-        hooks = {}
-      })
-
-      local dap = require 'dap'
-      local dapui = require 'dapui'
-
-      require('mason-nvim-dap').setup {
-        automatic_installation = true,
-        ensure_installed = {
-          'node2',
-        },
-      }
-
-      vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'Debug: Start/Continue' })
-      vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Debug: Step Into' })
-      vim.keymap.set('n', '<leader>dn', dap.step_over, { desc = 'Debug: Step Over' })
-      vim.keymap.set('n', '<leader>do', dap.step_out, { desc = 'Debug: Step Out' })
-      vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
-      vim.keymap.set(
-      'n',
-      '<leader>dB',
-      function() dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ') end,
-      { desc = 'Debug: Set Breakpoint' }
-      )
-      vim.keymap.set('n', '<leader>dl', dapui.toggle, { desc = 'Debug: See last session result.' })
-
-      dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-      dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-      dap.listeners.before.event_exited['dapui_config'] = dapui.close
-    end)
-
-    local nmap_leader = function(suffix, rhs, desc)
-      vim.keymap.set('n', '<Leader>' .. suffix, rhs, { desc = desc })
-    end
-
-    -- mappings
-    -- buffers
-    local minipick = require('mini.pick')
-    local miniextra = require('mini.extra')
-    local minimap = require('mini.map')
-    local minifiles = require('mini.files')
-
-    nmap_leader('bb', minipick.builtin.buffers, 'Find buffer')
-
-    -- tabs
-    nmap_leader('<Tab>n', '<CMD>tabnew<CR>', 'New tab')
-    nmap_leader('<Tab>d', '<CMD>tabclose<CR>', 'Close tab')
-    nmap_leader('<Tab>]', '<CMD>tabnext<CR>', 'Next tab')
-    nmap_leader('<Tab>[', '<CMD>tabprevious<CR>', 'Previous tab')
-
-    -- code mappings
-    nmap_leader('cf', vim.lsp.buf.format, 'Format')
-    nmap_leader('cr', vim.lsp.buf.rename, 'Rename')
-    nmap_leader('cR', vim.lsp.buf.references, 'References')
-    nmap_leader('cci', vim.lsp.buf.incoming_calls, 'Incoming calls')
-    nmap_leader('cco', vim.lsp.buf.outgoing_calls, 'Outgoing calls')
-    nmap_leader('ch', vim.lsp.buf.hover, 'Hover Documentation')
-    nmap_leader('cX', miniextra.pickers.diagnostic, 'Diagnostics')
-    nmap_leader('cx', vim.diagnostic.open_float, 'Diagnostics')
-    nmap_leader('ca', vim.lsp.buf.code_action, 'Actions')
-    nmap_leader('a', vim.lsp.buf.code_action, 'LSP Actions')
-
-
-    -- file mappings
-    nmap_leader('ff', minipick.builtin.files, 'Fuzzy file finder')
-    nmap_leader(' ', minipick.builtin.files, 'Fuzzy file finder')
-    nmap_leader('/', minipick.builtin.grep_live, 'Live grep in all files')
-    nmap_leader('f/', minipick.builtin.grep_live, 'Live grep in all files')
-
-    -- debugger keymaps are set in plugin hooks
-
-    -- git mappings
-    nmap_leader('gb', miniextra.pickers.git_branches, 'Change git branch')
-
-    -- toggle mappings
-    nmap_leader('tm', minimap.toggle, 'Toggle minimap')
-    nmap_leader('tr', '<CMD>source $MYVIMRC<CR>', 'Reload config')
-    nmap_leader('tw', '<CMD>setlocal wrap! wrap?<CR>', 'Toggle word wrap')
-    nmap_leader('ts', '<CMD>setlocal spell! spell?<CR>', 'Toggle spell')
-    nmap_leader('tb', '<Cmd>lua vim.o.bg = vim.o.bg == "dark" and "light" or "dark"; print(vim.o.bg)<CR>',
-    'Toggle background')
-    nmap_leader('tl', '<CMD>setlocal list! list?<CR>', 'Toggle list')
-    nmap_leader('th',
-    '<Cmd>let v:hlsearch = 1 - v:hlsearch | echo (v:hlsearch ? "  " : "no") . "hlsearch" | :lua MiniMap.refresh()<CR>',
-    'Toggle search highlight')
-    nmap_leader('td', '<Cmd>lua print(MiniBasics.toggle_diagnostic())<CR>', 'Toggle diagnostic')
-
-    -- other leader mappings
-    nmap_leader('ft', minifiles.open, 'Open file tree')
-    nmap_leader('?', miniextra.pickers.commands, 'Command me')
-    nmap_leader('*', function() miniextra.pickers.buf_lines({ scope = 'current' }) end, 'Find in buffer')
-
-    -- other mappings
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
-    vim.keymap.set('n', '<CR>', vim.lsp.buf.definition, { desc = 'Go to definition [lsp]' })
-
-    -- neovide settings
-    if vim.g.neovide then
-      vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
-      vim.keymap.set('v', '<D-c>', '"+y')    -- Copy
-      vim.keymap.set('n', '<D-v>', '"+P')    -- Paste normal mode
-      vim.keymap.set('v', '<D-v>', '"+P')    -- Paste visual mode
-      vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-      vim.keymap.set('i', '<D-v>', '<C-R>+') -- Paste insert mode
-
-      vim.g.neovide_refresh_rate = 120
-
-      vim.o.guifont = 'SF Mono:h14'
-    end
-
-    -- Use spaces rather than tabs
-    vim.opt.expandtab = true
-    vim.opt.softtabstop = 2
-    vim.opt.tabstop = 2
-    vim.opt.shiftwidth = 2
-    vim.opt.exrc = true
-
-    vim.api.nvim_create_user_command(
-    'DiffOrig',
-    'vert new | set buftype=nofile | read ++edit # | 0d_ | diffthis | wincmd p | diffthis',
-    {}
-    )
-
-    -- some shortcuts for working with vimdiff
-    if vim.opt.diff:get() then
-      vim.b.miniclue_config = {
-        clues = {
-          lclue('m', 'Diff commands'),
-        }
-      }
-
-      vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-        callback = function(args)
-          if (args.buf == 1) or (args.buf == 3) then
-            vim.keymap.set('n', '<Leader>mp', ':diffput 2<CR>', { desc = 'Copy change to result', buffer = args.buf })
-            vim.keymap.set('n', '<Leader>mP', ':1,$+1diffput 2<CR>', { desc = 'Copy all changes to result', buffer = args.buf })
-          end
-
-          if (args.buf == 2) then
-            vim.b.miniclue_config = {
-              clues = {
-                lclue('mg', 'Get changes from...'),
-              }
+          add({
+            source = "OXY2DEV/markview.nvim",
+            depends = {
+              "nvim-treesitter/nvim-treesitter",
+              "nvim-tree/nvim-web-devicons"
             }
+          })
+          require("markview").setup({
+            hybrid_modes = nil
+          });
+          -- add({
+            --   source = 'iamcco/markdown-preview.nvim',
+            --   hooks = {
+              --     post_checkout = function()
+                --       vim.fn["mkdp#util#install"]()
+                --     end
+                --   }
+                -- })
 
-            vim.keymap.set('n', '<Leader>mg1', ':diffget 1<CR>', { desc = 'Get change from buff 1', buffer = args.buf })
-            vim.keymap.set('n', '<Leader>mg1', ':%+1diffget 1<CR>', { desc = 'Get all changes from buff 1', buffer = args.buf })
-            vim.keymap.set('n', '<Leader>mg3', ':diffget 3<CR>', { desc = 'Get change from buff 3', buffer = args.buf })
-            vim.keymap.set('n', '<Leader>mg3', ':%+1diffget 3<CR>', { desc = 'Get all changes from buff 3', buffer = args.buf })
-          end
-        end
-      })
-    end
+                add({
+                  source = 'kevinhwang91/nvim-ufo',
+                  depends = {
+                    "kevinhwang91/promise-async"
+                  },
+                })
+                require('ufo').setup({
+                  provider_selector = function(bufnr, filetype, buftype)
+                    return {'treesitter', 'indent'}
+                  end
+                })
+
+                vim.o.foldcolumn = '1'
+                vim.o.foldlevel = 99
+                vim.o.foldlevelstart = 99
+                vim.o.foldenable = true
+
+                vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+                vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+              end)
+
+              -- debug adapter
+              later(
+              function()
+                add({
+                  source = 'mfussenegger/nvim-dap',
+                  depends = {
+                    -- Creates a beautiful debugger UI
+                    'rcarriga/nvim-dap-ui',
+
+                    -- Required dependency for nvim-dap-ui
+                    'nvim-neotest/nvim-nio',
+
+                    -- Installs the debug adapters for you
+                    'williamboman/mason.nvim',
+                    'jay-babu/mason-nvim-dap.nvim',
+
+                    -- Add your own debuggers here
+                    'leoluz/nvim-dap-go',
+                  },
+                  hooks = {}
+                })
+
+                local dap = require 'dap'
+                local dapui = require 'dapui'
+
+                require('mason-nvim-dap').setup {
+                  automatic_installation = true,
+                  ensure_installed = {
+                    'node2',
+                  },
+                }
+
+                vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'Debug: Start/Continue' })
+                vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Debug: Step Into' })
+                vim.keymap.set('n', '<leader>dn', dap.step_over, { desc = 'Debug: Step Over' })
+                vim.keymap.set('n', '<leader>do', dap.step_out, { desc = 'Debug: Step Out' })
+                vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+                vim.keymap.set(
+                'n',
+                '<leader>dB',
+                function() dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ') end,
+                { desc = 'Debug: Set Breakpoint' }
+                )
+                vim.keymap.set('n', '<leader>dl', dapui.toggle, { desc = 'Debug: See last session result.' })
+
+                dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+                dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+                dap.listeners.before.event_exited['dapui_config'] = dapui.close
+              end)
+
+              local nmap_leader = function(suffix, rhs, desc)
+                vim.keymap.set('n', '<Leader>' .. suffix, rhs, { desc = desc })
+              end
+
+              -- mappings
+              -- buffers
+              local minipick = require('mini.pick')
+              local miniextra = require('mini.extra')
+              local minimap = require('mini.map')
+              local minifiles = require('mini.files')
+
+              nmap_leader('bb', minipick.builtin.buffers, 'Find buffer')
+
+              -- tabs
+              nmap_leader('<Tab>n', '<CMD>tabnew<CR>', 'New tab')
+              nmap_leader('<Tab>d', '<CMD>tabclose<CR>', 'Close tab')
+              nmap_leader('<Tab>]', '<CMD>tabnext<CR>', 'Next tab')
+              nmap_leader('<Tab>[', '<CMD>tabprevious<CR>', 'Previous tab')
+
+              -- code mappings
+              nmap_leader('cf', vim.lsp.buf.format, 'Format')
+              nmap_leader('cr', vim.lsp.buf.rename, 'Rename')
+              nmap_leader('cR', vim.lsp.buf.references, 'References')
+              nmap_leader('cci', vim.lsp.buf.incoming_calls, 'Incoming calls')
+              nmap_leader('cco', vim.lsp.buf.outgoing_calls, 'Outgoing calls')
+              nmap_leader('ch', vim.lsp.buf.hover, 'Hover Documentation')
+              nmap_leader('cX', miniextra.pickers.diagnostic, 'Diagnostics')
+              nmap_leader('cx', vim.diagnostic.open_float, 'Diagnostics')
+              nmap_leader('ca', vim.lsp.buf.code_action, 'Actions')
+              nmap_leader('a', vim.lsp.buf.code_action, 'LSP Actions')
+
+
+              -- file mappings
+              nmap_leader('ff', minipick.builtin.files, 'Fuzzy file finder')
+              nmap_leader(' ', minipick.builtin.files, 'Fuzzy file finder')
+              nmap_leader('/', minipick.builtin.grep_live, 'Live grep in all files')
+              nmap_leader('f/', minipick.builtin.grep_live, 'Live grep in all files')
+
+              -- debugger keymaps are set in plugin hooks
+
+              -- git mappings
+              nmap_leader('gb', miniextra.pickers.git_branches, 'Change git branch')
+
+              -- toggle mappings
+              nmap_leader('tm', minimap.toggle, 'Toggle minimap')
+              nmap_leader('tr', '<CMD>source $MYVIMRC<CR>', 'Reload config')
+              nmap_leader('tw', '<CMD>setlocal wrap! wrap?<CR>', 'Toggle word wrap')
+              nmap_leader('ts', '<CMD>setlocal spell! spell?<CR>', 'Toggle spell')
+              nmap_leader('tb', '<Cmd>lua vim.o.bg = vim.o.bg == "dark" and "light" or "dark"; print(vim.o.bg)<CR>',
+              'Toggle background')
+              nmap_leader('tl', '<CMD>setlocal list! list?<CR>', 'Toggle list')
+              nmap_leader('th',
+              '<Cmd>let v:hlsearch = 1 - v:hlsearch | echo (v:hlsearch ? "  " : "no") . "hlsearch" | :lua MiniMap.refresh()<CR>',
+              'Toggle search highlight')
+              nmap_leader('td', '<Cmd>lua print(MiniBasics.toggle_diagnostic())<CR>', 'Toggle diagnostic')
+
+              -- other leader mappings
+              nmap_leader('ft', minifiles.open, 'Open file tree')
+              nmap_leader('?', miniextra.pickers.commands, 'Command me')
+              nmap_leader('*', function() miniextra.pickers.buf_lines({ scope = 'current' }) end, 'Find in buffer')
+
+              -- other mappings
+              vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
+              vim.keymap.set('n', '<CR>', vim.lsp.buf.definition, { desc = 'Go to definition [lsp]' })
+
+              -- neovide settings
+              if vim.g.neovide then
+                vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
+                vim.keymap.set('v', '<D-c>', '"+y')    -- Copy
+                vim.keymap.set('n', '<D-v>', '"+P')    -- Paste normal mode
+                vim.keymap.set('v', '<D-v>', '"+P')    -- Paste visual mode
+                vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+                vim.keymap.set('i', '<D-v>', '<C-R>+') -- Paste insert mode
+
+                vim.g.neovide_refresh_rate = 120
+
+                vim.o.guifont = 'SF Mono:h14'
+              end
+
+              -- Use spaces rather than tabs
+              vim.opt.expandtab = true
+              vim.opt.softtabstop = 2
+              vim.opt.tabstop = 2
+              vim.opt.shiftwidth = 2
+              vim.opt.exrc = true
+
+              vim.api.nvim_create_user_command(
+              'DiffOrig',
+              'vert new | set buftype=nofile | read ++edit # | 0d_ | diffthis | wincmd p | diffthis',
+              {}
+              )
+
+              -- some shortcuts for working with vimdiff
+              if vim.opt.diff:get() then
+                vim.b.miniclue_config = {
+                  clues = {
+                    lclue('m', 'Diff commands'),
+                  }
+                }
+
+                vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+                  callback = function(args)
+                    if (args.buf == 1) or (args.buf == 3) then
+                      vim.keymap.set('n', '<Leader>mp', ':diffput 2<CR>', { desc = 'Copy change to result', buffer = args.buf })
+                      vim.keymap.set('n', '<Leader>mP', ':1,$+1diffput 2<CR>', { desc = 'Copy all changes to result', buffer = args.buf })
+                    end
+
+                    if (args.buf == 2) then
+                      vim.b.miniclue_config = {
+                        clues = {
+                          lclue('mg', 'Get changes from...'),
+                        }
+                      }
+
+                      vim.keymap.set('n', '<Leader>mg1', ':diffget 1<CR>', { desc = 'Get change from buff 1', buffer = args.buf })
+                      vim.keymap.set('n', '<Leader>mg1', ':%+1diffget 1<CR>', { desc = 'Get all changes from buff 1', buffer = args.buf })
+                      vim.keymap.set('n', '<Leader>mg3', ':diffget 3<CR>', { desc = 'Get change from buff 3', buffer = args.buf })
+                      vim.keymap.set('n', '<Leader>mg3', ':%+1diffget 3<CR>', { desc = 'Get all changes from buff 3', buffer = args.buf })
+                    end
+                  end
+                })
+              end
