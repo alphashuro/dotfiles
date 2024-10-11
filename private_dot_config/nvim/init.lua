@@ -70,7 +70,7 @@ now(function()
   require("mini.notify").setup()
   vim.notify = require("mini.notify").make_notify()
   require("mini.icons").setup()
-  require("mini.tabline").setup()
+  require("mini.tabline").setup({})
   require("mini.statusline").setup()
   -- require("mini.base16").setup()
   require("mini.align").setup()
@@ -228,7 +228,7 @@ now(function()
   })
 
   require("nvim-treesitter.configs").setup({
-    ensure_installed = { "lua", "vimdoc", "org", "markdown", "markdown_inline" },
+    ensure_installed = { "lua", "vimdoc", "org", "markdown", "markdown_inline", 'http' },
     auto_install = true,
     highlight = {
       enable = true,
@@ -339,6 +339,14 @@ now(function()
   --     vim.schedule(require("chezmoi.commands.__edit").watch)
   --   end,
   -- })
+
+  add({
+    source = 'rest-nvim/rest.nvim',
+  })
+
+  vim.g.rest_nvim = {
+    
+  }
 end)
 
 -- lsp
