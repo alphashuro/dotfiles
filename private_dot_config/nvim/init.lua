@@ -238,6 +238,8 @@ now(function()
     ignore_install = { "org" }
   })
 
+
+
   -- vim.o.foldmethod = "expr";
   -- vim.o.foldexpr= "nvim_treesitter#foldexpr()";
 
@@ -488,7 +490,7 @@ now(function()
         }
       })
       require("markview").setup({
-        hybrid_modes = { "n" }
+        hybrid_modes = nil
       });
       -- add({
       --   source = 'iamcco/markdown-preview.nvim',
