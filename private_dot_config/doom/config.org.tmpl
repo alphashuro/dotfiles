@@ -6,19 +6,19 @@ Not sure what this is for, adding it just in case
 #+end_src
 
 * Config
-User/machine specific config
+** User/machine specific config
 
 #+begin_src elisp
 (setq user-full-name "Alpha Shuro"
       user-mail-address "{{ .email }}")
 #+end_src
 
-Editor setup
+** Editor setup
 
 #+begin_src elisp
 (setq doom-font (font-spec :family "Monaspace Krypton" :size 13)
       doom-variable-pitch-font (font-spec :family "Monaspace Krypton Var" :size 14))
-(setq doom-theme 'doom-monokai-spectrum)
+(setq doom-theme 'doom-one)
 (setq display-line-numbers-type t) ; `t' | `nil' | `relative'
 
 (setq-default tab-width 2)
@@ -26,7 +26,7 @@ Editor setup
 (setq indent-line-function 'insert-tab)
 #+end_src
 
-Apparently doom is not compatible with fish, so I need to set it to use a POSIX shell
+** Apparently doom is not compatible with fish, I need to set it to use a POSIX shell
 
 #+begin_src elisp
 (setq shell-file-name (executable-find "bash"))
@@ -34,13 +34,35 @@ Apparently doom is not compatible with fish, so I need to set it to use a POSIX 
 (setq-default explicit-shell-file-name (executable-find "fish"))
 #+end_src
 
-Org mode
+* Specific packages config
+** Org mode
+
+PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 
 #+begin_src elisp
 (setq org-directory "~/org/")
-#+end_src
 
-* Specific packages
+(defun find-or-create-datetree-heading (subheading)
+        (org-datetree-find-iso-week-create (org-date-to-gregorian (org-today)) t)
+        (unless (re-search-forward (format "^\\*+ %s$" (regexp-quote subheading)) nil t)
+          (org-insert-subheading nil)
+          (insert subheading)))
+
+(after! org
+        (setq org-capture-templates
+        '(("t" "Todo"
+                entry
+                (file+function "journal.org"
+                        (lambda () (find-or-create-datetree-heading "tasks")))
+                "* TODO %?")
+
+                ("j" "Journal note"
+                entry
+                (file+function "journal.org"
+                        (lambda () (find-or-create-datetree-heading "notes")))
+                "* %<%R> %?\n"))))
+
+#+end_src
 
 ** dired
 An attempt to make dired more like [[http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/][`oil.nvim' and `vinegar.vim`]]
@@ -68,10 +90,10 @@ An attempt to make dired more like [[http://vimcasts.org/blog/2013/01/oil-and-vi
 
 * Notes
 
-** keybindings
+** Keybindings
 - Guide on rebinding keys: https://discourse.doomemacs.org/t/how-to-re-bind-keys/56
 
-** configuring packages
+** Configuring packages
 Whenever you reconfigure a package, make sure to wrap your config in an
 `after!' block, otherwise Doom's defaults may override your settings. E.g.
   (after! PACKAGE
