@@ -35,26 +35,26 @@ Not sure what this is for, adding it just in case
 #+end_src
 
 * Specific packages config
-** Org mode
+** Org
 
 PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 
 #+begin_src elisp
-(setq org-directory "~/org/")
+(setq org-directory "~/org")
+#+end_src
 
-(defun find-or-create-datetree-heading (subheading)
-        (org-datetree-find-iso-week-create (org-date-to-gregorian (org-today)) t)
-        (unless (re-search-forward (format "^\\*+ %s$" (regexp-quote subheading)) nil t)
-          (org-insert-subheading nil)
-          (insert subheading)))
+** Org roam
 
-(after! org
-        (setq org-capture-templates
-        '(("t" "Todo"
-                entry
-                (file+function "journal.org"
-                        (lambda () (find-or-create-datetree-heading "tasks")))
-                "* TODO %?")
+#+begin_src elisp
+(after! org-roam
+  (setq org-roam-directory org-directory)
+  (org-roam-db-autosync-mode)
+  (add-to-list 'display-buffer-alist
+               '("\\*org-roam\\*"
+                 (display-buffer-in-direction)
+                 (direction . right)
+                 (window-width . 0.33)
+                 (window-height . fit-window-to-buffer))))
 
                 ("j" "Journal note"
                 entry
