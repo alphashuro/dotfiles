@@ -47,7 +47,8 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 
 #+begin_src elisp
 (after! org-roam
-  (setq org-roam-directory org-directory)
+  (setq org-roam-directory org-directory
+        org-id-link-to-org-use-id t)
   (org-roam-db-autosync-mode)
   (add-to-list 'display-buffer-alist
                '("\\*org-roam\\*"
@@ -55,13 +56,6 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
                  (direction . right)
                  (window-width . 0.33)
                  (window-height . fit-window-to-buffer))))
-
-                ("j" "Journal note"
-                entry
-                (file+function "journal.org"
-                        (lambda () (find-or-create-datetree-heading "notes")))
-                "* %<%R> %?\n"))))
-
 #+end_src
 
 ** dired
