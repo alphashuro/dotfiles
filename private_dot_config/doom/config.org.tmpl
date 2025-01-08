@@ -40,15 +40,36 @@ Not sure what this is for, adding it just in case
 PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 
 #+begin_src elisp
-(setq org-directory "~/org")
+(after! org
+  (setq org-directory "~/org"
+        org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
+        org-capture-templates '(("t" "Todo"
+                                 entry (file "inbox.org")
+                                 "* %U TODO %?"
+                                 :tree-type week)
+
+                                ("n" "Note"
+                                 entry (file+olp+datetree "journal.org")
+                                 "* %<%R> %?\n"
+                                 :tree-type week)
+
+                                ("e" "Event in journal"
+                                 entry (file+olp+datetree "journal.org")
+                                 "* %?\n%T"
+                                 :tree-type week :time-prompt t)
+
+                                ("j" "Journal entry"
+                                 entry (file+olp+datetree "journal.org")
+                                 "* %?\n%T"
+                                 :tree-type week)
+                                )))
 #+end_src
 
 ** Org roam
 
 #+begin_src elisp
 (after! org-roam
-  (setq org-roam-directory org-directory
-        org-id-link-to-org-use-id t)
+  (setq org-roam-directory org-directory)
   (org-roam-db-autosync-mode)
   (add-to-list 'display-buffer-alist
                '("\\*org-roam\\*"
