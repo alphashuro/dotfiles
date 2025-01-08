@@ -62,7 +62,7 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 
                                         ("j" "Journal entry"
                                          entry (file+olp+datetree "journal.org")
-                                         "* %?\n%T"
+                                         "* %T %?"
                                          :tree-type week)
                                         )))
 #+end_src
