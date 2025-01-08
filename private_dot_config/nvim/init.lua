@@ -538,6 +538,7 @@ later(function()
   })
   require("markview").setup({
     hybrid_modes = nil,
+    initial_state = false,
     on_enable = function ()
 	  -- vim.o.foldmethod = "expr";
 	  -- vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()";
@@ -729,5 +730,5 @@ if vim.opt.diff:get() then
   })
 end
 
-vim.keymap.set('n', 'gf' ':e <cfile><CR>') -- gf: create new file if it desn't exist
+vim.keymap.set('n', 'gf', ':e <cfile><CR>') -- gf: create new file if it desn't exist
 
