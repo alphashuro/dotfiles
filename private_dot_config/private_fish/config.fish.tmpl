@@ -16,8 +16,12 @@ fish_add_path /run/current-system/sw/bin
 # support cargo apps
 fish_add_path $HOME/.cargo/bin
 
+# support custom bins
+fish_add_path $HOME/bin
+
+set -g fish_greeting ""
+
 if status is-interactive
-    set -U fish_greeting
     set -x EDITOR nvim
 
     fish_hybrid_key_bindings
