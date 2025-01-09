@@ -21,8 +21,8 @@ Not sure what this is for, adding it just in case
 (setq doom-theme 'doom-one)
 (setq display-line-numbers-type t) ; `t' | `nil' | `relative'
 
-(setq-default tab-width 2)
-(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2
+              indent-tabs-mode nil)
 (setq indent-line-function 'insert-tab)
 #+end_src
 
@@ -42,36 +42,55 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 #+begin_src elisp
 (after! org
   (setq org-directory "~/org"
+        org-hide-leading-stars nil
         org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
         org-todo-keywords '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELLED(c@/!)")
                             (sequence "IDEA(i!)" "PROJ(p!)" "|" "DONE(d)" "CANCELLED(c@/!)"))
         org-log-done 'time
-        org-capture-templates '(("t" "Task"
-                                         entry (file+olp "inbox.org" "now")
-                                         "* TODO %?\nCREATED: %U")
+        org-agenda-start-on-weekday 1
+        org-agenda-include-diary t
+        org-agenda-span 14
+        org-agenda-start-with-log-mode t
+        org-agenda-start-with-clock-report-mode nil
+        org-agenda-default-appointment-duration 25
+        org-agenda-show-future-repeats nil
+        org-agenda-time-grid '((daily today require-timed)
+                              (600 800 1000 1200 1400 1600 1800 2000 2200)
+                              "......" "----------------")
+        org-capture-templates '(("t" "Todo"
+                                 entry (file "inbox.org")
+                                 "* TODO %?\nSCHEDULED: %t\nCREATED: %U")
 
-                                        ("n" "Note"
-                                         entry (file+olp+datetree "journal.org")
-                                         "* %<%R> %?\n"
-                                         :tree-type week)
+                                ("n" "Note"
+                                 entry (file+olp+datetree "journal.org")
+                                 "* %<%R> %?\n"
+                                 :tree-type week)
 
-                                        ("e" "Event in journal"
-                                         entry (file+olp+datetree "journal.org")
-                                         "* %?\n%T"
-                                         :tree-type week :time-prompt t)
+                                ("e" "Event in journal"
+                                 entry (file+olp+datetree "journal.org")
+                                 "* %?\n%T"
+                                 :tree-type week :time-prompt t)
 
-                                        ("j" "Journal entry"
-                                         entry (file+olp+datetree "journal.org")
-                                         "* %T %?"
-                                         :tree-type week)
-                                        )))
+                                ("j" "Journal entry"
+                                 entry (file+olp+datetree "journal.org")
+                                 "* %?\n%T"
+                                 :tree-type week)
+
+                                ("T" "Thought"
+                                 entry (file "thoughts.org")
+                                 "* %T\n%i%?"))))
 #+end_src
 
 ** Org roam
 
 #+begin_src elisp
 (after! org-roam
-  (setq org-roam-directory org-directory)
+  (setq org-roam-directory org-directory
+        org-roam-capture-templates `(("d" "default"
+                                      plain
+                                      "%?"
+                                      :target (file+head "${slug}.org" "#+title: ${title}")
+                                      :unnarrowed t)))
   ;; (org-roam-db-autosync-mode)
   (add-to-list 'display-buffer-alist
                '("\\*org-roam\\*"
