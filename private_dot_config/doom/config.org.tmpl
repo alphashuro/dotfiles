@@ -42,21 +42,28 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 #+begin_src elisp
 (after! org
   (setq org-directory "~/org"
+
         org-hide-leading-stars nil
+
+        ; create org id when copying link via `org-store-link`
         org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
+
         org-todo-keywords '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELLED(c@/!)")
                             (sequence "IDEA(i!)" "PROJ(p!)" "|" "DONE(d)" "CANCELLED(c@/!)"))
         org-log-done 'time
+
         org-agenda-start-on-weekday 1
-        org-agenda-include-diary t
         org-agenda-span 14
         org-agenda-start-with-log-mode t
         org-agenda-start-with-clock-report-mode nil
         org-agenda-default-appointment-duration 25
         org-agenda-show-future-repeats nil
+        org-agenda-todo-ignore-scheduled t
+        org-agenda-todo-ignore-deadlines t
         org-agenda-time-grid '((daily today require-timed)
                               (600 800 1000 1200 1400 1600 1800 2000 2200)
                               "......" "----------------")
+
         org-capture-templates '(("t" "Todo"
                                  entry (file "inbox.org")
                                  "* TODO %?\nSCHEDULED: %t\nCREATED: %U")
@@ -78,7 +85,8 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 
                                 ("T" "Thought"
                                  entry (file "thoughts.org")
-                                 "* %T\n%i%?"))))
+                                 "* %T\n%i%?")))
+  (org-indent-mode -1))
 #+end_src
 
 ** Org roam
@@ -86,11 +94,12 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 #+begin_src elisp
 (after! org-roam
   (setq org-roam-directory org-directory
-        org-roam-capture-templates `(("d" "default"
-                                      plain
-                                      "%?"
-                                      :target (file+head "${slug}.org" "#+title: ${title}")
-                                      :unnarrowed t)))
+        org-roam-dailies-directory "journals/"
+        org-roam-capture-templates
+          '(("d" "default" plain
+             "%?"
+             :target (file+head "pages/${slug}.org" "#+title: ${title}\n")
+             :unnarrowed t)))
   ;; (org-roam-db-autosync-mode)
   (add-to-list 'display-buffer-alist
                '("\\*org-roam\\*"
@@ -131,6 +140,15 @@ An attempt to make dired more like [[http://vimcasts.org/blog/2013/01/oil-and-vi
   (setq evil-shift-width 2
         evil-split-window-below t
         evil-vsplit-window-right t))
+#+end_src
+
+** org-super-links
+
+#+begin_src elisp
+(use-package org-super-links
+  :bind (("C-c s s" . org-super-links-link)
+         ("C-c s l" . org-super-links-store-link)
+         ("C-c s C-l" . org-super-links-insert-link)))
 #+end_src
 
 * Notes
