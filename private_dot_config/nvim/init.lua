@@ -41,7 +41,7 @@ now(function()
 
   vim.o.termguicolors = true
   vim.o.background = 'light'
-  vim.cmd.colorscheme 'onedark'
+  vim.cmd.colorscheme 'monokai-pro-spectrum'
 
   -- my custom simple theme
   -- primarily for light mode
@@ -214,8 +214,9 @@ now(function()
     source = "chrisgrieser/nvim-various-textobjs",
   })
   require("various-textobjs").setup({
-    useDefaultKeymaps = true,
-    disabledKeymaps = {},
+    keymaps = {
+      useDefaults = true,
+    },
   })
 
   add({
@@ -228,7 +229,13 @@ now(function()
   })
 
   require("nvim-treesitter.configs").setup({
-    ensure_installed = { "lua", "vimdoc", "org", "markdown", "markdown_inline", 'http' },
+    ensure_installed = { 
+      "lua", 
+      "vimdoc",
+      "markdown",
+      "markdown_inline",
+      "http",
+    },
     auto_install = true,
     highlight = {
       enable = true,
@@ -252,10 +259,6 @@ now(function()
 
   add({
     source = 'simnalamburt/vim-mundo',
-    hooks = {
-      post_checkout = function()
-      end,
-    }
   })
 
   vim.keymap.set('n', '\\u', ':MundoToggle<CR>', { desc = 'Toggle undo tree' })
@@ -340,13 +343,6 @@ now(function()
   --   end,
   -- })
 
-  add({
-    source = 'rest-nvim/rest.nvim',
-  })
-
-  vim.g.rest_nvim = {
-    
-  }
 end)
 
 -- lsp
@@ -602,6 +598,15 @@ later(
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+    add({
+      source = 'nvim-orgmode/orgmode',
+    })
+
+    require('orgmode').setup({
+      org_agenda_files = '~/org/**/*',
+      org_default_notes_file = '~/org/inbox.org',
+    })
   end)
 
 local nmap_leader = function(suffix, rhs, desc)
