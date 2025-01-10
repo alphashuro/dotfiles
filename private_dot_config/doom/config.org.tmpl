@@ -52,7 +52,8 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
                             (sequence "IDEA(i!)" "PROJ(p!)" "|" "DONE(d)" "CANCELLED(c@/!)"))
         org-log-done 'time
 
-        org-agenda-start-on-weekday 1
+        ; org-agenda-start-on-weekday 1
+        org-agenda-start-day "."
         org-agenda-span 14
         org-agenda-start-with-log-mode t
         org-agenda-start-with-clock-report-mode nil
@@ -87,6 +88,8 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
                                  entry (file "thoughts.org")
                                  "* %T\n%i%?")))
   (org-indent-mode -1))
+
+(map! :n "mo" #'org-open-at-point)
 #+end_src
 
 ** Org roam
