@@ -1,8 +1,15 @@
-format = '$directory$character'
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = '$directory$line_break$time'
 right_format = '$all'
 
 # Inserts a blank line between shell prompts
 add_newline = true
+
+[time]
+disabled = false
+format = '[$time]($style) '
+time_format = '%R'
 
 [nodejs]
 disabled = true
@@ -13,3 +20,26 @@ disabled = true
 [cmd_duration]
 disabled = true
 
+# pleo stuff
+
+[kubernetes]
+disabled = false
+
+[docker_context]
+disabled = true
+
+[gradle]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[java]
+disabled = true
+
+[env_var.AWS_PROFILE]
+variable = 'AWS_PROFILE'
+format = '$env_value ($style)'

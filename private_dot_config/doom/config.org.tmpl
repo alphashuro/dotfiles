@@ -151,6 +151,21 @@ An attempt to make dired more like [[http://vimcasts.org/blog/2013/01/oil-and-vi
          ("C-c s C-l" . org-super-links-insert-link)))
 #+end_src
 
+** forge
+
+#+begin_src elisp
+(after! magit
+  (use-package forge)
+  (setq auth-sources '("~/.authinfo.gpg")))
+#+end_src
+
+** company
+
+#+begin_src elisp
+(after! company
+  (add-to-list 'company-backends 'company-capf))
+#+end_src
+
 * Notes
 
 ** Keybindings

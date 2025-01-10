@@ -50,6 +50,5 @@
 ;; (unpin! t)
 
 (package! chezmoi)
-(package! hledger-mode)
 (package! org-super-links
           :recipe (:host github :repo "toshism/org-super-links"))

@@ -5,7 +5,7 @@ eval "$({{ lookPath "brew" }} shellenv)"
 {{end -}}
 
 # disabling this for now because of shell startup time
-# eval "$({{ lookPath "devbox" }} global shellenv)"
+# eval "$(/Users/alpha.shuro/.nix-profile/bin/devbox global shellenv)"
 
 if type -q fenv
   fenv source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
@@ -41,4 +41,7 @@ source ~/projects/pleo/bin/oo.fish
 set --export --prepend PATH "$HOME/.rd/bin"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
+fish_add_path $HOME/.jetbrains-toolbox/bin
+
 {{end}}
+

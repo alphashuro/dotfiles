@@ -343,6 +343,15 @@ now(function()
   --   end,
   -- })
 
+  add({
+    source = 'tpope/vim-dadbod',
+  })
+  add({
+    source = 'kristijanhusak/vim-dadbod-ui',
+    depends = {
+      'kristijanhusak/vim-dadbod-completion',
+    }
+  })
 end)
 
 -- lsp
