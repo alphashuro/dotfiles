@@ -49,6 +49,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! chezmoi)
+(package! chezmoi
+  :recipe (:host github :repo "tuh8888/chezmoi.el"))
 (package! org-super-links
           :recipe (:host github :repo "toshism/org-super-links"))
+(package! forge)

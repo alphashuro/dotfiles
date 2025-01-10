@@ -46,11 +46,13 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
         org-hide-leading-stars nil
 
         ; create org id when copying link via `org-store-link`
-        org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
+        ; org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
 
         org-todo-keywords '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELLED(c@/!)")
                             (sequence "IDEA(i!)" "PROJ(p!)" "|" "DONE(d)" "CANCELLED(c@/!)"))
         org-log-done 'time
+
+        org-refile-allow-creating-parent-nodes 'confirm
 
         ; org-agenda-start-on-weekday 1
         org-agenda-start-day "."
@@ -86,10 +88,12 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 
                                 ("T" "Thought"
                                  entry (file "thoughts.org")
-                                 "* %T\n%i%?")))
-  (org-indent-mode -1))
+                                 "* %T\n%i%?"))))
 
-(map! :n "mo" #'org-open-at-point)
+(require 'org-indent)
+(org-indent-mode -1)
+
+(map! :n "SPC m o" #'org-open-at-point) ; doesn't work?
 #+end_src
 
 ** Org roam
@@ -154,19 +158,19 @@ An attempt to make dired more like [[http://vimcasts.org/blog/2013/01/oil-and-vi
          ("C-c s C-l" . org-super-links-insert-link)))
 #+end_src
 
+** which-key
+
+#+begin_src elisp
+(after! which-key
+  (setq which-key-use-C-h-commands t))
+#+end_src
+
 ** forge
 
 #+begin_src elisp
 (after! magit
-  (use-package forge)
+  (require 'forge)
   (setq auth-sources '("~/.authinfo.gpg")))
-#+end_src
-
-** company
-
-#+begin_src elisp
-(after! company
-  (add-to-list 'company-backends 'company-capf))
 #+end_src
 
 * Notes
