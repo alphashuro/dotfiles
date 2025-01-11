@@ -49,7 +49,17 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! chezmoi)
-(package! hledger-mode)
+(package! chezmoi
+          :recipe (:host github :repo "tuh8888/chezmoi.el"))
+
 (package! org-super-links
           :recipe (:host github :repo "toshism/org-super-links"))
+
+(package! forge)
+
+(package! org-ql
+          :recipe (:host github :repo "alphapapa/org-ql"))
+
+(package! helm-org-ql
+          :recipe (:host github :repo "alphapapa/org-ql"
+                   :files ("helm-org-ql.el")))

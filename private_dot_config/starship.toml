@@ -1,8 +1,15 @@
-format = '$directory$character'
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = '$directory$line_break$time'
 right_format = '$all'
 
 # Inserts a blank line between shell prompts
 add_newline = true
+
+[time]
+disabled = false
+format = '[$time]($style) '
+time_format = '%R'
 
 [nodejs]
 disabled = true

@@ -3,11 +3,14 @@
 {{ $context := promptChoiceOnce . "context" "What is this machine's purpose?" $contextChoices -}}
 {{ $canGame := promptBoolOnce . "canGame" "Do you want to install gaming apps on this machine?" (eq $context "personal") -}}
 {{ $canChat := promptBoolOnce . "canChat" "Do you want to install chat apps on this machine?" (eq $context "personal") -}}
+{{ $fqdn := promptStringOnce . "fqdn" "What is the machine's fqdnHostname?" -}}
+
 [data]
   email = {{ $email | quote }}
   context = {{ $context | quote }}
   canGame = {{ $canGame }}
   canChat = {{ $canChat }}
+  fqdn = {{ $fqdn | quote }}
 
 {{ if eq .chezmoi.os "linux" -}}
 
@@ -21,5 +24,5 @@
 command = "bash"
 args = [
     "-c",
-    "cp {{ "{{" }} .Target {{ "}}" }} {{ "{{" }} .Target {{ "}}" }}.base && code --new-window --wait --merge {{ "{{" }} .Destination {{ "}}" }} {{ "{{" }} .Target {{ "}}" }} {{ "{{" }} .Target {{ "}}" }}.base {{ "{{" }} .Source {{ "}}" }}",
+    """cp {{ "{{" }} .Target {{ "}}" }} {{ "{{" }} .Target {{ "}}" }}.base && code --new-window --wait --merge {{ "{{" }} .Destination {{ "}}" }} {{ "{{" }} .Target {{ "}}" }} {{ "{{" }} .Target {{ "}}" }}.base {{ "{{" }} .Source {{ "}}" }}""",
 ]

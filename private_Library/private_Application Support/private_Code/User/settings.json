@@ -1,18 +1,26 @@
 {
   "editor.tabSize": 2,
+  "editor.fontFamily": "Monaspace Argon Var Light, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 13,
+  "editor.stickyScroll.enabled": true,
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingComments": "never",
+  "editor.autoClosingQuotes": "never",
+  "editor.accessibilitySupport": "off",
 
   "window.autoDetectColorScheme": true,
-  "workbench.colorTheme": "Catppuccin Latte",
-  "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
-  "workbench.preferredLightColorTheme": "Catppuccin Latte",
+
+  "workbench.colorTheme": "Default Light Modern",
+  "workbench.preferredDarkColorTheme": "Dark (Molokai)",
+  "workbench.preferredLightColorTheme": "Dark (Molokai)",
 
   "terminal.integrated.profiles.osx": {
     "fish": {
-      "path": "fish",
-      "args": ["-l"]
-    }
+      "path": "/opt/homebrew/bin/fish",
+    },
   },
   "terminal.integrated.defaultProfile.osx": "fish",
+  "terminal.external.osxExec": "Kitty.app",
 
   // Vim easymotion is required for Jump menu - <SPC> j
   "vim.easymotion": true,
@@ -55,20 +63,38 @@
     }
   ],
 
-  "editor.fontSize": 13,
-
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[kotlin]": {
+    "editor.defaultFormatter": "fwcd.kotlin"
+  },
+
+  "diffEditor.renderSideBySide": true,
+  "diffEditor.experimental.showMoves": true,
+
+  "git.replaceTagsWhenPull": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+
+  "githubPullRequests.fileListLayout": "tree",
+  "githubPullRequests.pullBranch": "never",
+
+  "projectManager.git.baseFolders": [
+    "~/projects"
+  ],
+
+  "notebook.stickyScroll.enabled": true,
+
 
   "foam.openDailyNote.directory": "journal",
   "foam.openDailyNote.onStartup": true,

@@ -46,11 +46,11 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#{{ .chezmoi.hostname }}
-    darwinConfigurations."{{ .chezmoi.hostname }}" = nix-darwin.lib.darwinSystem {
+    # $ darwin-rebuild build --flake .#{{ .fqdn }}
+    darwinConfigurations."{{ .fqdn }}" = nix-darwin.lib.darwinSystem {
       modules = [ configuration ];
     };
 
-    darwinPackages = self.darwinConfigurations."{{ .chezmoi.hostname }}".pkgs;
+    darwinPackages = self.darwinConfigurations."{{ .fqdn }}".pkgs;
   };
 }
