@@ -29,8 +29,6 @@ brew "lazygit"
 brew "direnv"
 brew "helix"
 brew "gh"
-tap "railwaycat/emacsmacport"
-brew "emacs-mac", args: ["with-native-compilation", "with-imagemagick", "with-mac-metal", "with-modules"]
 
 {{- if eq .chezmoi.os "darwin" }}
 # ******** casks
@@ -56,8 +54,8 @@ cask "dropbox"
 cask "sublime-text"
 cask "sublime-merge"
 cask "visual-studio-code"
-# tap "d12frosted/emacs-plus"
-# brew "emacs-plus", args: ["with-native-comp", "with-imagemagick"]
+tap "d12frosted/emacs-plus"
+brew "emacs-plus", args: ["with-imagemagick", "with-ctags", "with-dbus", "with-mailutils", "with-xwidgets"]
 
 {{ if eq .context "pleo" }}
 cask "intellij-idea"
@@ -70,7 +68,7 @@ cask "discord"
 cask "steam"
 cask "battle-net"
 
-{{- end }} # gaming section
+{{- end }}
 
 {{- if .canChat }}
 
@@ -80,6 +78,6 @@ cask "slack"
 cask "signal"
 cask "whatsapp"
 
-{{- end }} # chat apps
+{{- end }}
 
-{{- end }} # darwin section
+{{- end }}

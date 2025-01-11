@@ -1,27 +1,66 @@
 {
+  // *** editor
   "editor.tabSize": 2,
-  "editor.fontFamily": "Monaspace Argon Var Light, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'Monaspace Neon Var', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 13,
   "editor.stickyScroll.enabled": true,
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingComments": "never",
   "editor.autoClosingQuotes": "never",
   "editor.accessibilitySupport": "off",
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.lineNumbers": "interval",
+  "editor.minimap.autohide": true,
 
+  // *** window
   "window.autoDetectColorScheme": true,
 
+  // *** workbench
   "workbench.colorTheme": "Default Light Modern",
   "workbench.preferredDarkColorTheme": "Dark (Molokai)",
   "workbench.preferredLightColorTheme": "Dark (Molokai)",
 
+  // *** terminal
   "terminal.integrated.profiles.osx": {
     "fish": {
-      "path": "/opt/homebrew/bin/fish",
+      "path": "fish",
+      "args": ["-l"]
     },
   },
   "terminal.integrated.defaultProfile.osx": "fish",
   "terminal.external.osxExec": "Kitty.app",
 
+  // *** language specific
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+
+  // *** vim plugin
+  "vim.camelCaseMotion.enable": true,
+  "vim.changeWordIncludesWhitespace": true,
+  "vim.enableNeovim": true,
+  "vim.foldfix": true,
+  "vim.highlightedyank.enable": true,
+  "vim.hlsearch": true,
+  "vim.replaceWithRegister": true,
+  "vim.sneak": true,
+  "vim.sneakReplacesF": true,
+  "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vim.statusBarColorControl": true,
+  "vim.targets.enable": true,
+  "vim.visualstar": true,
   // Vim easymotion is required for Jump menu - <SPC> j
   "vim.easymotion": true,
   // Use system clipboard for vim
@@ -44,6 +83,10 @@
           "args": "m"
         }
       ]
+    },
+    {
+      "before": ["-"],
+      "commands": ["vsnetrw.open"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -60,45 +103,14 @@
           "args": "m"
         }
       ]
+    },
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
     }
   ],
-
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[kotlin]": {
-    "editor.defaultFormatter": "fwcd.kotlin"
-  },
-
-  "diffEditor.renderSideBySide": true,
-  "diffEditor.experimental.showMoves": true,
-
-  "git.replaceTagsWhenPull": true,
-  "git.confirmSync": false,
-  "git.autofetch": true,
-
-  "githubPullRequests.fileListLayout": "tree",
-  "githubPullRequests.pullBranch": "never",
-
-  "projectManager.git.baseFolders": [
-    "~/projects"
-  ],
-
-  "notebook.stickyScroll.enabled": true,
-
-
-  "foam.openDailyNote.directory": "journal",
-  "foam.openDailyNote.onStartup": true,
-  "foam.completion.useAlias": "whenPathDiffersFromTitle",
-  "foam.dateSnippets.afterCompletion": "noop",
-  "foam.edit.linkReferenceDefinitions": "withExtensions",
-}
+} \ No newline at end of file

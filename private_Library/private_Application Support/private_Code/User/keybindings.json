@@ -34,6 +34,11 @@
   {
     "key": "space",
     "command": "vspacecode.space",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "key": "space",
+    "command": "vspacecode.space",
     "when": "sideBarFocus && !inputFocus && !whichkeyActive"
   },
   {
@@ -184,5 +189,33 @@
     "command": "-issue.suggestRefresh",
     "when": "suggestWidgetVisible"
   },
-  { "key": "ctrl+space",           "command": "workbench.action.showCommands" },
+  {
+    "key": "ctrl+space",
+    "command": "workbench.action.showCommands"
+  },
+  {
+    "key": "ctrl+x ctrl+o",
+    "command": "editor.action.triggerSuggest",
+    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+  },
+  {
+    "key": "tab",
+    "command": "extension.vim_tab",
+    "when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'"
+  },
+  {
+    "key": "tab",
+    "command": "-extension.vim_tab",
+    "when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'"
+  },
+  {
+    "key": "g",
+    "command": "-magit.refresh",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "g",
+    "command": "vspacecode.showMagitRefreshMenu",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
 ]

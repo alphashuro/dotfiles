@@ -3,14 +3,14 @@
 {{ $context := promptChoiceOnce . "context" "What is this machine's purpose?" $contextChoices -}}
 {{ $canGame := promptBoolOnce . "canGame" "Do you want to install gaming apps on this machine?" (eq $context "personal") -}}
 {{ $canChat := promptBoolOnce . "canChat" "Do you want to install chat apps on this machine?" (eq $context "personal") -}}
-{{ $fqdn := promptStringOnce . "fqdn" "What is the machine's fqdnHostname?" -}}
+{{ $hostname := promptStringOnce . "hostname" "What is the machine's hostname? (for nix)" -}}
 
 [data]
   email = {{ $email | quote }}
   context = {{ $context | quote }}
   canGame = {{ $canGame }}
   canChat = {{ $canChat }}
-  fqdn = {{ $fqdn | quote }}
+  hostname = {{ $hostname | quote }}
 
 {{ if eq .chezmoi.os "linux" -}}
 
