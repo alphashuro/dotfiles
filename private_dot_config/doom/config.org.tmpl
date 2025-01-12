@@ -24,6 +24,8 @@ Not sure what this is for, adding it just in case
 (setq-default tab-width 2
               indent-tabs-mode nil)
 (setq indent-line-function 'insert-tab)
+
+(global-auto-revert-mode 1) ;; auto-reload changed files
 #+end_src
 
 ** Apparently doom is not compatible with fish, I need to set it to use a POSIX shell
@@ -40,8 +42,8 @@ Not sure what this is for, adding it just in case
 PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 
 #+begin_src elisp
-(after! org
-  (setq org-directory "~/org"
+(setq
+        org-directory "~/org"
 
         org-hide-leading-stars nil
 
@@ -64,31 +66,33 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
         org-agenda-todo-ignore-scheduled t
         org-agenda-todo-ignore-deadlines t
         org-agenda-time-grid '((daily today require-timed)
-                              (600 800 1000 1200 1400 1600 1800 2000 2200)
-                              "......" "----------------")
+                               (600 800 1000 1200 1400 1600 1800 2000 2200)
+                               "......" "----------------")
 
         org-capture-templates '(("t" "Todo"
-                                 entry (file "inbox.org")
-                                 "* TODO %?\nSCHEDULED: %t\nCREATED: %U")
+                                entry (file "inbox.org")
+                                "* TODO %?\nSCHEDULED: %t\nCREATED: %U")
 
                                 ("n" "Note"
-                                 entry (file+olp+datetree "journal.org")
-                                 "* %<%R> %?\n"
-                                 :tree-type week)
+                                entry (file+olp+datetree "journal.org")
+                                "* %<%R> %?\n"
+                                :tree-type week)
 
                                 ("e" "Event in journal"
-                                 entry (file+olp+datetree "journal.org")
-                                 "* %?\n%T"
-                                 :tree-type week :time-prompt t)
+                                entry (file+olp+datetree "journal.org")
+                                "* %?\n%T"
+                                :tree-type week :time-prompt t)
 
                                 ("j" "Journal entry"
-                                 entry (file+olp+datetree "journal.org")
-                                 "* %?\n%T"
-                                 :tree-type week)
+                                entry (file+olp+datetree "journal.org")
+                                "* %?\n%T"
+                                :tree-type week
+                                :empty-lines 1)
 
                                 ("T" "Thought"
-                                 entry (file "thoughts.org")
-                                 "* %T\n%i%?"))))
+                                entry (file "thoughts.org")
+                                "* %U\n%i%?"
+                                :empty-lines 1)))
 
 (require 'org-indent)
 (org-indent-mode -1)
@@ -153,6 +157,7 @@ An attempt to make dired more like [[http://vimcasts.org/blog/2013/01/oil-and-vi
 
 #+begin_src elisp
 (use-package org-super-links
+  :defer
   :bind (("C-c s s" . org-super-links-link)
          ("C-c s l" . org-super-links-store-link)
          ("C-c s C-l" . org-super-links-insert-link)))
@@ -173,6 +178,12 @@ An attempt to make dired more like [[http://vimcasts.org/blog/2013/01/oil-and-vi
   (setq auth-sources '("~/.authinfo.gpg")))
 #+end_src
 
+** elfeed
+
+#+begin_src elisp
+(after! elfeed
+  (setq rmh-elfeed-org-files (list (file-name-concat org-directory "elfeed.org"))))
+#+end_src
 * Notes
 
 ** Keybindings
