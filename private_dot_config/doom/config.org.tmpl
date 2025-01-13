@@ -72,7 +72,7 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
         org-agenda-todo-ignore-deadlines t
         org-agenda-skip-scheduled-if-done t
         org-agenda-skip-deadline-if-done t
-        org-agenda-time-grid '((daily today require-timed)
+        org-agenda-time-grid '((daily today remove-match)
                                (600 800 1000 1200 1400 1600 1800 2000 2200)
                                "......" "----------------")
 
