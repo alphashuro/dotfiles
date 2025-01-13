@@ -79,7 +79,23 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
         org-agenda-skip-deadline-if-done t
         org-agenda-time-leading-zero t
         org-agenda-time-grid '((daily today remove-match)
-                               (600 800 1000 1200 1400 1600 1800 2000 2200)
+                               (930
+                                1000
+                                1030
+                                1100
+                                1130
+                                1200
+                                1230
+                                1300
+                                1330
+                                1400
+                                1430
+                                1500
+                                1530
+                                1600
+                                1630
+                                1700
+                                1730)
                                "......" "----------------")
 
         org-capture-templates '(("t" "Todo"
@@ -198,6 +214,7 @@ An attempt to make dired more like [[http://vimcasts.org/blog/2013/01/oil-and-vi
 (after! elfeed
   (setq rmh-elfeed-org-files (list (file-name-concat org-directory "elfeed.org"))))
 #+end_src
+
 * Notes
 
 ** Keybindings
