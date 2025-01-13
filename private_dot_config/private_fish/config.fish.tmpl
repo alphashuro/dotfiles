@@ -21,10 +21,9 @@ fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/bin
 
 set -g fish_greeting ""
+set -x EDITOR nvim
 
 if status is-interactive
-    set -x EDITOR nvim
-
     fish_hybrid_key_bindings
     starship init fish | source
     zoxide init --cmd j fish | source
