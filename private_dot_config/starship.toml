@@ -23,3 +23,29 @@ disabled = true
 [cmd_duration]
 disabled = true
 
+# pleo stuff
+
+[kubernetes]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[gradle]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[java]
+disabled = true
+
+[aws]
+disabled = true
+
+[env_var.AWS_PROFILE]
+variable = 'AWS_PROFILE'
+format = '$env_value ($style)'

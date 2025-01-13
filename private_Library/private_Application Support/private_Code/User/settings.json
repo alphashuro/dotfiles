@@ -113,4 +113,25 @@
       "commands": ["editor.action.outdentLines"]
     }
   ],
-} \ No newline at end of file
+
+  "diffEditor.renderSideBySide": true,
+  "diffEditor.experimental.showMoves": true,
+
+  "git.replaceTagsWhenPull": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+
+  "githubPullRequests.fileListLayout": "tree",
+  "githubPullRequests.pullBranch": "never",
+
+  "projectManager.git.baseFolders": [
+    "~/projects"
+  ],
+
+  "notebook.stickyScroll.enabled": true,
+
+  "datadog.telemetry.setup.enableTelemetry": "enabled",
+  "datadog.timeRange.setup.timeFrame": "1h",
+
+  "redhat.telemetry.enabled": true,
+}
