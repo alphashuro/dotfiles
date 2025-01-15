@@ -55,7 +55,9 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
         org-todo-keywords '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELLED(c@/!)")
                             (sequence "IDEA(i!)" "SOMEDAY(s)" "NEXT(n)" "PROJ(p!)" "|" "DONE(d)" "CANCELLED(c@/!)")
                             (sequence "TOREAD(r)" "READING(e)" "|" "READ(d)"))
+
         org-log-done 'time
+        org-log-note-clock-out t
 
         org-refile-allow-creating-parent-nodes 'confirm
 
@@ -63,7 +65,7 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
 
         ; org-agenda-start-on-weekday 1
         org-agenda-start-day "."
-        org-agenda-span 14
+        org-agenda-span 1
         org-agenda-start-with-log-mode t
         org-agenda-start-with-clock-report-mode nil
         org-agenda-default-appointment-duration 25
@@ -72,6 +74,7 @@ PS; to use time as file name: (concat (format-time-string "%Y-%m-%d") ".org")
         org-agenda-todo-ignore-deadlines t
         org-agenda-skip-scheduled-if-done t
         org-agenda-skip-deadline-if-done t
+        org-agenda-time-leading-zero t
         org-agenda-time-grid '((daily today remove-match)
                                (600 800 1000 1200 1400 1600 1800 2000 2200)
                                "......" "----------------")
