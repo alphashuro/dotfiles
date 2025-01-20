@@ -4,9 +4,12 @@
  :simlayers {:space-mode {:key :spacebar}}
  :simlayer-threshold 250
 
+ :input-sources {:colemak {:input_source_id "io.github.colemakmods.keyboardlayout.colemakdh.colemakdhiso"
+                           :language "en"}}
+
  :main [
         {:des "Caps Lock: tap for Escape, hold for Control." :rules [[:##caps_lock :left_control nil {:alone :escape}]]},
-        ; {:des "Swap colon and semi colon in Colemak." :rules [[:!Sp :p] [:p :!Sp]]},
+        {:des "Swap colon and semi colon in Colemak." :rules [[:!Sp :p :colemak] [:p :!Sp :colemak]]},
 
         ; {:des "Space symbols simlayer" :rules [[:q :!S1 :space-mode], ; ***** last used *****
         ;                                   [:w :!S2 :space-mode],
