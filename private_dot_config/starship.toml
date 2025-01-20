@@ -6,6 +6,9 @@ right_format = '$all'
 # Inserts a blank line between shell prompts
 add_newline = true
 
+[directory]
+fish_style_pwd_dir_length = 3
+
 [time]
 disabled = false
 format = '[$time]($style) '
