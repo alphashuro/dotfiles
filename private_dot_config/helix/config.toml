@@ -1,4 +1,4 @@
-theme = "molokai"
+theme = "catppuccin_mocha"
    
 [editor]
 end-of-line-diagnostics = "hint"
