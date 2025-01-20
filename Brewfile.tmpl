@@ -29,10 +29,13 @@ brew "lazygit"
 brew "direnv"
 brew "helix"
 brew "gh"
+tap "jorgerojas26/lazysql"
+brew "lazysql"
 
 {{- if eq .chezmoi.os "darwin" }}
-# ******** casks
 brew "yqrashawn/goku/goku"
+
+# ******** casks
 
 # essentials
 cask "1password-cli"
