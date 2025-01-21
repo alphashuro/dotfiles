@@ -52,8 +52,8 @@ default_flags: ihg
 #
 # You may start either in 'command' mode, or in 'input' mode
 
-modal: false
-initial_mode: input
+# modal: false
+# initial_mode: input
 
 ###############################################################
 # Whether to mark the selected line with a triangle
@@ -204,7 +204,7 @@ content_search_max_file_size: 10MB
 # This makes it possible to use shortcuts like 'space-n', 
 # 'ctrl-alt-a-b', 'shift-space', etc.
 #
-enable_kitty_keyboard: true
+# enable_kitty_keyboard: true
 
 ###############################################################
 # Imports
