@@ -12,14 +12,18 @@ layout {
   }
 
   tab name="hx" {
-    pane command="hx" close_on_exit=true
+    pane {
+      command "hx"
+      args "."
+      close_on_exit true
+    }
   }
 
   tab name="br" {
     pane {
       command "fish" 
       args "-c" "EDITOR=$HOME/.config/zellij/scripts/open-in-hx-tab.sh br ."
-      close_on_exit false
+      close_on_exit true
     }
   }
 }
