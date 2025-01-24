@@ -21,6 +21,9 @@ minideps.setup({ path = { package = path_package } })
 
 local add, now, later = minideps.add, minideps.now, minideps.later
 
+-- local plugins = require './plugins'
+-- plugins.install()
+
 now(function()
   add({
     source = 'loctvl842/monokai-pro.nvim',
@@ -228,6 +231,11 @@ now(function()
     },
   })
 
+  add({
+    source = "nvim-treesitter/nvim-treesitter-textobjects",
+    depends = { "nvim-treesitter/nvim-treesitter" },
+  })
+
   require("nvim-treesitter.configs").setup({
     ensure_installed = { 
       "lua", 
@@ -254,6 +262,57 @@ now(function()
     },
     indent = {
       enable = true
+    },
+    textobjects = {
+      select = {
+        enable = true,
+
+        -- Automatically jump forward to textobj, similar to targets.vim
+        lookahead = true,
+
+        keymaps = {
+          -- You can use the capture groups defined in textobjects.scm
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          -- You can optionally set descriptions to the mappings (used in the desc parameter of
+          -- nvim_buf_set_keymap) which plugins like which-key display
+          ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+          -- You can also use captures from other query groups like `locals.scm`
+          ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
+        },
+        -- You can choose the select mode (default is charwise 'v')
+        --
+        -- Can also be a function which gets passed a table with the keys
+        -- * query_string: eg '@function.inner'
+        -- * method: eg 'v' or 'o'
+        -- and should return the mode ('v', 'V', or '<c-v>') or a table
+        -- mapping query_strings to modes.
+        selection_modes = {
+          ['@parameter.outer'] = 'v', -- charwise
+          ['@function.outer'] = 'V', -- linewise
+          ['@class.outer'] = '<c-v>', -- blockwise
+        },
+        -- If you set this to `true` (default is `false`) then any textobject is
+        -- extended to include preceding or succeeding whitespace. Succeeding
+        -- whitespace has priority in order to act similarly to eg the built-in
+        -- `ap`.
+        --
+        -- Can also be a function which gets passed a table with the keys
+        -- * query_string: eg '@function.inner'
+        -- * selection_mode: eg 'v'
+        -- and should return true or false
+        include_surrounding_whitespace = true,
+      },
+      swap = {
+        enable = true,
+        swap_next = {
+          ["<leader>a"] = "@parameter.inner",
+        },
+        swap_previous = {
+          ["<leader>A"] = "@parameter.inner",
+        },
+      },
     },
   })
 
@@ -616,6 +675,7 @@ later(
       org_agenda_files = '~/org/**/*',
       org_default_notes_file = '~/org/inbox.org',
     })
+
   end)
 
 local nmap_leader = function(suffix, rhs, desc)
@@ -652,7 +712,7 @@ nmap_leader('a', vim.lsp.buf.code_action, 'LSP Actions')
 
 -- file mappings
 nmap_leader('ff', minipick.builtin.files, 'Fuzzy file finder')
-nmap_leader(' ', minipick.builtin.files, 'Fuzzy file finder')
+nmap_leader(' ', ':BrootWorkingDir<CR>', 'Broot!')
 nmap_leader('/', minipick.builtin.grep_live, 'Live grep in all files')
 nmap_leader('f/', minipick.builtin.grep_live, 'Live grep in all files')
 

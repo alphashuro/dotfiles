@@ -19,7 +19,9 @@
                                                                        [:7 :!S7] [:!S7 :7]
                                                                        [:8 :!S8] [:!S8 :8]
                                                                        [:9 :!S9] [:!S9 :9]
-                                                                       [:0 :!S0] [:!S0 :0]]}
+                                                                       [:0 :!S0] [:!S0 :0]]},
+        {:des "Swap angle brackets with square brackets." :rules [[:open_bracket :!Sopen_bracket] [:!Sopen_bracket :open_bracket]
+                                                                  [:close_bracket :!Sclose_bracket] [:!Sclose_bracket :close_bracket]]}
 
         ; {:des "Space symbols simlayer" :rules [[:q :!S1 :space-mode], ; ***** last used *****
         ;                                   [:w :!S2 :space-mode],
