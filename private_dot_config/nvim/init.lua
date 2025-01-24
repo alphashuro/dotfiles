@@ -712,7 +712,7 @@ nmap_leader('a', vim.lsp.buf.code_action, 'LSP Actions')
 
 -- file mappings
 nmap_leader('ff', minipick.builtin.files, 'Fuzzy file finder')
-nmap_leader(' ', ':BrootWorkingDir<CR>', 'Broot!')
+nmap_leader(' ', minipick.builtin.files, 'Fuzzy file finder')
 nmap_leader('/', minipick.builtin.grep_live, 'Live grep in all files')
 nmap_leader('f/', minipick.builtin.grep_live, 'Live grep in all files')
 
