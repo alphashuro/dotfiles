@@ -10,6 +10,16 @@
  :main [
         {:des "Caps Lock: tap for Escape, hold for Control." :rules [[:##caps_lock :left_control nil {:alone :escape}]]},
         {:des "Swap colon and semi colon in Colemak." :rules [[:!Sp :p :colemak] [:p :!Sp :colemak]]},
+        {:des "Symbols for hands (swap numbers with symbols)." :rules [[:1 :!S1] [:!S1 :1]
+                                                                       [:2 :!S2] [:!S2 :2]
+                                                                       [:3 :!S3] [:!S3 :3]
+                                                                       [:4 :!S4] [:!S4 :4]
+                                                                       [:5 :!S5] [:!S5 :5]
+                                                                       [:6 :!S6] [:!S6 :6]
+                                                                       [:7 :!S7] [:!S7 :7]
+                                                                       [:8 :!S8] [:!S8 :8]
+                                                                       [:9 :!S9] [:!S9 :9]
+                                                                       [:0 :!S0] [:!S0 :0]]}
 
         ; {:des "Space symbols simlayer" :rules [[:q :!S1 :space-mode], ; ***** last used *****
         ;                                   [:w :!S2 :space-mode],
