@@ -4,7 +4,7 @@
  :simlayers {:space-mode {:key :spacebar}}
  :simlayer-threshold 250
 
- :input-sources {:colemak {:input_source_id "io.github.colemakmods.keyboardlayout.colemakdh.colemakdhiso"
+ :input-sources {:colemak {:input_source_id "io.github.colemakmods.keyboardlayout.colemakdh.colemakdh*"
                            :language "en"}}
 
  :main [
