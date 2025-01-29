@@ -5,23 +5,44 @@
  :simlayer-threshold 250
 
  :input-sources {:colemak {:input_source_id "io.github.colemakmods.keyboardlayout.colemakdh.colemakdh*"
-                           :language "en"}}
+                           :language "en"}
+                 :colemak-iso {:input_source_id "io.github.colemakmods.keyboardlayout.colemakdh.colemakdhiso*"}}
+
+ :devices {:moonlander [{:vendor_id 12951 :product_id 6505}]}
 
  :main [
-        {:des "Caps Lock: tap for Escape, hold for Control." :rules [[:##caps_lock :left_control nil {:alone :escape}]]},
-        {:des "Swap colon and semi colon in Colemak." :rules [[:!Sp :p :colemak] [:p :!Sp :colemak]]},
-        {:des "Symbols for hands (swap numbers with symbols)." :rules [[:1 :!S1] [:!S1 :1]
-                                                                       [:2 :!S2] [:!S2 :2]
-                                                                       [:3 :!S3] [:!S3 :3]
-                                                                       [:4 :!S4] [:!S4 :4]
-                                                                       [:5 :!S5] [:!S5 :5]
-                                                                       [:6 :!S6] [:!S6 :6]
-                                                                       [:7 :!S7] [:!S7 :7]
-                                                                       [:8 :!S8] [:!S8 :8]
-                                                                       [:9 :!S9] [:!S9 :9]
-                                                                       [:0 :!S0] [:!S0 :0]]},
-        {:des "Swap angle brackets with square brackets." :rules [[:open_bracket :!Sopen_bracket] [:!Sopen_bracket :open_bracket]
-                                                                  [:close_bracket :!Sclose_bracket] [:!Sclose_bracket :close_bracket]]}
+        {:des "Caps Lock: tap for Escape, hold for Control." 
+         :rules [[:##caps_lock :left_control nil {:alone :escape}]]},
+
+        {:des "Swap colon and semi colon in Colemak." 
+         :rules [[:!Sp :p :colemak] [:p :!Sp :colemak]]},
+
+        {:des "Symbols for hands (swap numbers with symbols)." 
+         :rules [[:1 :!S1 [:!moonlander]] [:!S1 :1 [:!moonlander]]
+                 [:2 :!S2 [:!moonlander]] [:!S2 :2 [:!moonlander]]
+                 [:3 :!S3 [:!moonlander]] [:!S3 :3 [:!moonlander]]
+                 [:4 :!S4 [:!moonlander]] [:!S4 :4 [:!moonlander]]
+                 [:5 :!S5 [:!moonlander]] [:!S5 :5 [:!moonlander]]
+                 [:6 :!S6 [:!moonlander]] [:!S6 :6 [:!moonlander]]
+                 [:7 :!S7 [:!moonlander]] [:!S7 :7 [:!moonlander]]
+                 [:8 :!S8 [:!moonlander]] [:!S8 :8 [:!moonlander]]
+                 [:9 :!S9 [:!moonlander]] [:!S9 :9 [:!moonlander]]
+                 [:0 :!S0 [:!moonlander]] [:!S0 :0 [:!moonlander]]]},
+
+        {:des "Swap angle brackets with square brackets."
+         :rules [[:open_bracket :!Sopen_bracket [:!moonlander]] 
+                 [:!Sopen_bracket :open_bracket [:!moonlander]]
+                 [:close_bracket :!Sclose_bracket [:!moonlander]] 
+                 [:!Sclose_bracket :close_bracket [:!moonlander]]]},
+
+        ; disabling this for now, since it doesn't transfer keybindings
+        ; {:des "Use matrix layout for moonlander in colemak"
+        ;  :rules [[:z :grave_accent_and_tilde [:colemak-iso :moonlander]]
+        ;          [:grave_accent_and_tilde :b [:colemak-iso :moonlander]]
+        ;          [:x :z [:colemak-iso :moonlander]]
+        ;          [:c :x [:colemak-iso :moonlander]]
+        ;          [:v :c [:colemak-iso :moonlander]]
+        ;          [:b :v [:colemak-iso :moonlander]]]}
 
         ; {:des "Space symbols simlayer" :rules [[:q :!S1 :space-mode], ; ***** last used *****
         ;                                   [:w :!S2 :space-mode],
