@@ -18,16 +18,28 @@
          :rules [[:!Sp :p :colemak] [:p :!Sp :colemak]]},
 
         {:des "Symbols for hands (swap numbers with symbols)." 
-         :rules [[:1 :!S1 [:!moonlander]] [:!S1 :1 [:!moonlander]]
-                 [:2 :!S2 [:!moonlander]] [:!S2 :2 [:!moonlander]]
-                 [:3 :!S3 [:!moonlander]] [:!S3 :3 [:!moonlander]]
-                 [:4 :!S4 [:!moonlander]] [:!S4 :4 [:!moonlander]]
-                 [:5 :!S5 [:!moonlander]] [:!S5 :5 [:!moonlander]]
-                 [:6 :!S6 [:!moonlander]] [:!S6 :6 [:!moonlander]]
-                 [:7 :!S7 [:!moonlander]] [:!S7 :7 [:!moonlander]]
-                 [:8 :!S8 [:!moonlander]] [:!S8 :8 [:!moonlander]]
-                 [:9 :!S9 [:!moonlander]] [:!S9 :9 [:!moonlander]]
-                 [:0 :!S0 [:!moonlander]] [:!S0 :0 [:!moonlander]]]},
+
+         :rules [[:1 :!S1] [:!S1 :1]
+                 [:2 :!S2] [:!S2 :2]
+                 [:3 :!S3] [:!S3 :3]
+                 [:4 :!S4] [:!S4 :4]
+                 [:5 :!S5] [:!S5 :5]
+                 [:6 :!S6] [:!S6 :6]
+                 [:7 :!S7] [:!S7 :7]
+                 [:8 :!S8] [:!S8 :8]
+                 [:9 :!S9] [:!S9 :9]
+                 [:0 :!S0] [:!S0 :0]]},
+
+         ; :rules [[:1 :!S1 [:!moonlander]] [:!S1 :1 [:!moonlander]]
+         ;         [:2 :!S2 [:!moonlander]] [:!S2 :2 [:!moonlander]]
+         ;         [:3 :!S3 [:!moonlander]] [:!S3 :3 [:!moonlander]]
+         ;         [:4 :!S4 [:!moonlander]] [:!S4 :4 [:!moonlander]]
+         ;         [:5 :!S5 [:!moonlander]] [:!S5 :5 [:!moonlander]]
+         ;         [:6 :!S6 [:!moonlander]] [:!S6 :6 [:!moonlander]]
+         ;         [:7 :!S7 [:!moonlander]] [:!S7 :7 [:!moonlander]]
+         ;         [:8 :!S8 [:!moonlander]] [:!S8 :8 [:!moonlander]]
+         ;         [:9 :!S9 [:!moonlander]] [:!S9 :9 [:!moonlander]]
+         ;         [:0 :!S0 [:!moonlander]] [:!S0 :0 [:!moonlander]]]},
 
         {:des "Swap angle brackets with square brackets."
          :rules [[:open_bracket :!Sopen_bracket [:!moonlander]] 
