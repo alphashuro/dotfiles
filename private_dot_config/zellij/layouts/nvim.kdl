@@ -1,0 +1,30 @@
+layout {
+  default_tab_template {
+    pane size=1 borderless=true {
+        plugin location="zellij:compact-bar"
+    }
+
+    children
+
+    pane size=1 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+  }
+
+  tab name="nvim" {
+    pane {
+      command "nvim"
+      args "."
+      close_on_exit true
+    }
+  }
+
+  tab name="br" {
+    pane {
+      name "br"
+      command "fish" 
+      args "-c" "EDITOR=$HOME/.config/zellij/scripts/open-in-nvim-tab.sh br ."
+      close_on_exit true
+    }
+  }
+}
