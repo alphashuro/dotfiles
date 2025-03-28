@@ -114,3 +114,4 @@ plugins {
 }
 
 styled_underlines false
+show_startup_tips false
