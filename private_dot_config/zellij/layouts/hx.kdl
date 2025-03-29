@@ -1,5 +1,9 @@
 layout {
   default_tab_template {
+    pane size=1 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+
     children
 
     pane size=1 borderless=true {
@@ -7,18 +11,18 @@ layout {
     }
   }
 
-  tab name="hx" {
-    pane {
-      command "hx"
-      args "."
-      close_on_exit true
-    }
-  }
-
   tab name="br" {
     pane {
       command "fish" 
       args "-c" "EDITOR=$HOME/.config/zellij/scripts/open-in-hx-tab.sh br ."
+      close_on_exit true
+    }
+  }
+
+  tab name="hx" {
+    pane {
+      command "hx"
+      args "."
       close_on_exit true
     }
   }
