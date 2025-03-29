@@ -1,0 +1,28 @@
+(defsrc
+	1 2 3 4 5 6 7 8 9 0
+                    p
+	caps
+	lsft rsft
+)
+
+(deflayer base
+	S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0
+                    S-p
+	@esc-ctrl
+	@shifted-lsft @shifted-rsft
+)
+
+(deflayer shifted
+	(unshift 1) (unshift 2) (unshift 3) (unshift 4) (unshift 5) (unshift 6) (unshift 7) (unshift 8) (unshift 9) (unshift 0)
+                    (unshift p)
+	_
+	_ _
+)
+
+(defalias 
+  shifted (layer-while-held shifted)
+  shifted-lsft (multi lsft @shifted)
+  shifted-rsft (multi rsft @shifted)
+  esc-ctrl (tap-hold-press 100 15 esc lctrl)
+)
+
