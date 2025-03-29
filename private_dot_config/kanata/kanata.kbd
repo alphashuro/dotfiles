@@ -1,28 +1,25 @@
-(defsrc
-	1 2 3 4 5 6 7 8 9 0
-                    p
-	caps
-	lsft rsft
-)
+(defsrc)
 
-(deflayer base
-	S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0
-                    S-p
-	@esc-ctrl
-	@shifted-lsft @shifted-rsft
-)
+(defcfg process-unmapped-keys yes)
 
-(deflayer shifted
-	(unshift 1) (unshift 2) (unshift 3) (unshift 4) (unshift 5) (unshift 6) (unshift 7) (unshift 8) (unshift 9) (unshift 0)
-                    (unshift p)
-	_
-	_ _
-)
+(deflayermap (remappings)
+	;; maps caps to esc on tap, ctrl on hold
+	caps (tap-hold-press 100 100 esc lctrl)
 
-(defalias 
-  shifted (layer-while-held shifted)
-  shifted-lsft (multi lsft @shifted)
-  shifted-rsft (multi rsft @shifted)
-  esc-ctrl (tap-hold-press 100 15 esc lctrl)
-)
+	;; in colemak, p is ;
+	;; so this actually reverses shift+;
+	p (fork S-p (unshift p) (lsft))
 
+	;; symbols for hands
+	;; reverse shift+n for the number row
+	1 (fork S-1 (unshift 1) (lsft))
+	2 (fork S-2 (unshift 2) (lsft))
+	3 (fork S-3 (unshift 3) (lsft))
+	4 (fork S-4 (unshift 4) (lsft))
+	5 (fork S-5 (unshift 5) (lsft))
+	6 (fork S-6 (unshift 6) (lsft))
+	7 (fork S-7 (unshift 7) (lsft))
+	8 (fork S-8 (unshift 8) (lsft))
+	9 (fork S-9 (unshift 9) (lsft))
+	0 (fork S-0 (unshift 0) (lsft))
+)
