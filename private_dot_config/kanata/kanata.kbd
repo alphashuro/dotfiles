@@ -5,7 +5,7 @@
 
 (deflayermap (remappings)
 	;; maps caps to esc on tap, ctrl on hold
-	caps (tap-hold-press 15 50 esc lctrl)
+	caps (tap-hold-press 50 100 esc lctrl)
 
 	;; in colemak, p is ;
 	;; so this actually reverses shift+;
