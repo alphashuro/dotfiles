@@ -1,10 +1,11 @@
 (defsrc)
 
-(defcfg process-unmapped-keys yes)
+;; if you don't exclude ctrl, kanata cannot respond to `ctrl-c`
+(defcfg process-unmapped-keys (all-except lctl))
 
 (deflayermap (remappings)
 	;; maps caps to esc on tap, ctrl on hold
-	caps (tap-hold-press 100 100 esc lctrl)
+	caps (tap-hold-press 15 50 esc lctrl)
 
 	;; in colemak, p is ;
 	;; so this actually reverses shift+;
@@ -22,4 +23,8 @@
 	8 (fork S-8 (unshift 8) (lsft))
 	9 (fork S-9 (unshift 9) (lsft))
 	0 (fork S-0 (unshift 0) (lsft))
+  
+  ;; extra convenient symbols
+  [ (fork S-[ (unshift [) (lsft))
+  ] (fork S-] (unshift ]) (lsft))
 )

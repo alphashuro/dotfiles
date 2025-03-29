@@ -25,3 +25,6 @@ set('n', '<leader><tab>[', ':tabprevious<cr>', { desc = 'previous tab' })
 set('n', '<leader><tab>n', ':tabnew<cr>', { desc = 'new tab' })
 set('n', '<leader><tab>d', ':tabclose<cr>', { desc = 'close tab' })
 
+-- easier keymap for exiting term window
+set('t', '<esc><esc>', '<c-\\><c-n>', { desc = 'Exit terminal mode' })
+
