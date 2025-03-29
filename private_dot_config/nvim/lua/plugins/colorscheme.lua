@@ -1,3 +1,5 @@
+vim.cmd [[colorscheme retrobox]]
+
 return {
   -- {
   --   "catppuccin/nvim",
